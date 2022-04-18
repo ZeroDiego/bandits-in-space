@@ -8,13 +8,13 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); // should be changed to specific scenes instead of index
     }
 
     public void QuitGame()
     {
         Debug.Log("Quit!");
         Application.Quit();
-    }
+    }   
 
 }
