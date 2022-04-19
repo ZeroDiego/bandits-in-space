@@ -6,8 +6,8 @@ public class ScoutBandit : Bandit
 {
     public override void Attack(Transform transform)
     {
-        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector2.left, 1, 1 << 6);
-        RaycastHit2D hitRight = Physics2D.Raycast(transform.position, -Vector2.left, 1, 1 << 6);
+        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector2.left, 3, 1 << 6);
+        RaycastHit2D hitRight = Physics2D.Raycast(transform.position, -Vector2.left, 3, 1 << 6);
 
         if (hitLeft.collider != null)
         {
