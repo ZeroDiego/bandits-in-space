@@ -7,71 +7,80 @@ public class PlayerController : MonoBehaviour
 
     public float moveSpeed = 5f;
     public Transform movePoint;
+    public GameObject[] levels;
 
-    public Vector3 level1 = new Vector3(-6, 1, 0);
-    public Vector3 level2 = new Vector3(6, 1, 0);
-    public Vector3 level3 = new Vector3(6, 4, 0);
+    public Transform lastCheckpoint;
 
-    public Vector3 whereToGo = new Vector3();
+    public int positionSelector;
+
+    public string[] levelName;
+
+    private bool isPressed;
 
     // Start is called before the first frame update
     void Start()
     {
         movePoint.parent = null;
-    }
+        lastCheckpoint.parent = null;
+        transform.position = levels[positionSelector].transform.position;
+        movePoint.position = levels[positionSelector].transform.position;
+        lastCheckpoint.position = levels[positionSelector].transform.position;
 
-    private void goTo()
-    {
-        if(whereToGo == level1)
-        {
-            if(transform.position == level3)
-            {
-                transform.position = Vector3.MoveTowards(transform.position, level2, moveSpeed * Time.deltaTime);
-                transform.position = Vector3.MoveTowards(transform.position, level1, moveSpeed * Time.deltaTime);
-            }
-        }
     }
 
     // Update is called once per frame
     void Update()
     {
 
-
-        void OnMouseUpAsButton()
-        {
-            
-        }
-
-
-
-
-        /*
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
-        if(Vector3.Distance(transform.position, movePoint.position) <= .05f)
-        {
-            if(Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f)
-            {
-                movePoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
-            }
 
-            if(Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
+        for(int var1 = 0; var1 < levels.Length; var1++) //checks where the player last landed on a level for reference later
+        {
+            if(transform.position == levels[var1].transform.position)
             {
-                movePoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
+                lastCheckpoint.position = levels[var1].transform.position;
             }
         }
 
-        */
+        void goTo(int indexToGoTo)
+        {
+                movePoint.position = levels[indexToGoTo].transform.position;    
+        }
 
 
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
+            if (hit)
+            {
+                for(int var2=0; var2 < levels.Length; var2++)
+                {
+                    if(lastCheckpoint.position == levels[var2].transform.position)
+                    {
+                        for(int var3=0; var3 < levels.Length; var3++)
+                        {
+                            if(hit.transform.position == levels[var3].transform.position)
+                            {
+                                //Debug.Log(var3 - var2); 
+                                int i = var3 - var2; //returns the difference between level "steps" i.e level 3 is two steps from level 1, returning 2
 
-
+                                if (i > 0) { // if targeted level is lower
+                                    for (int methodRuns = 0; methodRuns <= i; methodRuns++) {
+                                        goTo(var2+1); // go to the level after this one for methodRuns number of times
+                                    }
+                                } else if (i < 0) // if targeted level is higher
+                                {
+                                    for (int methodRuns = 0; methodRuns <= i*-1; methodRuns++)
+                                    {
+                                        goTo(var2 - 1); // go to the level after this one for methodRuns number of times
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
-
-
-
-
-
-
-
 }
