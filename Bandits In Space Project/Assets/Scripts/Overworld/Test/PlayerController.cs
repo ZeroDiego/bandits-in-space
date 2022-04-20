@@ -6,16 +6,16 @@ public class PlayerController : MonoBehaviour
 {
 
     public float moveSpeed = 5f;
-    public Transform movePoint;
-    public GameObject[] levels;
 
+    public Transform movePoint;
     public Transform lastCheckpoint;
+    public Transform goalLevel;
+
+    public GameObject[] levels;
 
     public int positionSelector;
 
     public string[] levelName;
-
-    private bool isPressed;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
         transform.position = levels[positionSelector].transform.position;
         movePoint.position = levels[positionSelector].transform.position;
         lastCheckpoint.position = levels[positionSelector].transform.position;
+        goalLevel.parent = null;
 
     }
 
@@ -34,9 +35,9 @@ public class PlayerController : MonoBehaviour
 
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
 
-        for(int var1 = 0; var1 < levels.Length; var1++) //checks where the player last landed on a level for reference later
+        for (int var1 = 0; var1 < levels.Length; var1++) //checks where the player last landed on a level for reference later
         {
-            if(transform.position == levels[var1].transform.position)
+            if (transform.position == levels[var1].transform.position)
             {
                 lastCheckpoint.position = levels[var1].transform.position;
             }
@@ -44,7 +45,7 @@ public class PlayerController : MonoBehaviour
 
         void goTo(int indexToGoTo)
         {
-                movePoint.position = levels[indexToGoTo].transform.position;    
+            movePoint.position = levels[indexToGoTo].transform.position;
         }
 
 
@@ -54,27 +55,29 @@ public class PlayerController : MonoBehaviour
 
             if (hit)
             {
-                for(int var2=0; var2 < levels.Length; var2++)
+                for (int currentPositionLevel = 0; currentPositionLevel < levels.Length; currentPositionLevel++)
                 {
-                    if(lastCheckpoint.position == levels[var2].transform.position)
+                    if (lastCheckpoint.position == levels[currentPositionLevel].transform.position)
                     {
-                        for(int var3=0; var3 < levels.Length; var3++)
+                        for (int goalLevel = 0; goalLevel < levels.Length; goalLevel++)
                         {
-                            if(hit.transform.position == levels[var3].transform.position)
+                            if (hit.transform.position == levels[goalLevel].transform.position)
                             {
-                                //Debug.Log(var3 - var2); 
-                                int i = var3 - var2; //returns the difference between level "steps" i.e level 3 is two steps from level 1, returning 2
-
-                                if (i > 0) { // if targeted level is lower
-                                    for (int methodRuns = 0; methodRuns <= i; methodRuns++) {
-                                        goTo(var2+1); // go to the level after this one for methodRuns number of times
-                                    }
-                                } else if (i < 0) // if targeted level is higher
+                                Debug.Log(goalLevel - currentPositionLevel);
+                                int i = goalLevel - currentPositionLevel; //returns the difference between level "steps" i.e level 3 is two steps from level 1, returning 2
+                                if (i < 0)
                                 {
-                                    for (int methodRuns = 0; methodRuns <= i*-1; methodRuns++)
-                                    {
-                                        goTo(var2 - 1); // go to the level after this one for methodRuns number of times
-                                    }
+                                    i *= -1;
+                                }
+                                if (goalLevel > currentPositionLevel)
+                                {
+                                    Debug.Log("Steps: " + i);
+                                    goTo(currentPositionLevel + 1);
+                                }
+                                else if (goalLevel < currentPositionLevel)
+                                {
+                                    Debug.Log("Steps: " + i);
+                                    goTo(currentPositionLevel - 1);
                                 }
                             }
                         }
@@ -82,5 +85,14 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+
+
+
+
+
+
+
+
+
     }
 }
