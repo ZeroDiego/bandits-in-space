@@ -73,4 +73,10 @@ public abstract class Bandit : MonoBehaviour, TileMovement
     {
         EventManager.MovementEvent -= TileMovement;
     }
+
+    public void TakeDamage( int damageToTake )
+    {
+        healthPoints -= damageToTake; 
+    }
+
 }

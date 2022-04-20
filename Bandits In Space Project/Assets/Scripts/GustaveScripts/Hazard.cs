@@ -4,26 +4,17 @@ using UnityEngine;
 
 public class Hazard : MonoBehaviour
 {
+
     [SerializeField] protected int hazardDamage;
     protected bool hasBeenActivated;
     protected bool isVisible; 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("PlayerCharacter") || collision.CompareTag("EnemyCharacter"))
+        if (collision.CompareTag("Character"))
         {
-            doDamage(); 
+            collision.gameObject.GetComponent<Bandit>().TakeDamage(hazardDamage); 
         }
     }
-    protected int doDamage()
-    {
-        return hazardDamage; 
-    }
-
-    protected void setHazardDamage( int damageToSet )
-    {
-        hazardDamage = damageToSet; 
-    }
-
-
+   
 }
