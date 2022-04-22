@@ -11,9 +11,12 @@ public class Hazard : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Character"))
+        if (collision.CompareTag("Bandit"))
         {
             collision.gameObject.GetComponent<Bandit>().TakeDamage(hazardDamage); 
+        } else if (collision.CompareTag("Enemy"))
+        {
+            collision.gameObject.GetComponent<Enemy>().TakeDamage(hazardDamage);
         }
     }
    

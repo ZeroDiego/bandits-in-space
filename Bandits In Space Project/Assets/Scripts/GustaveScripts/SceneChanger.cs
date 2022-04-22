@@ -5,9 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
+    [SerializeField] private FadeController fadeController;
+    private bool isChangingScene; 
     public void ChangeScene()
     {
-        SceneManager.LoadSceneAsync(gameObject.name);
+        fadeController.Fade();
+        isChangingScene = true;       
     }
-
+    private void Update()
+    {
+        if (fadeController.imageToFade.color.a >= 1 && isChangingScene)
+        {
+            SceneManager.LoadSceneAsync(gameObject.name);
+        }
+    }
 }

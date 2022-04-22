@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Hazard_Mine : Hazard
 {
+
+    public int explosionRadius;
     private void Awake()
     {
         hazardDamage = 2;
@@ -29,7 +31,7 @@ public class Hazard_Mine : Hazard
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Explode();
+        Explode(); 
     }
-
 }
+
