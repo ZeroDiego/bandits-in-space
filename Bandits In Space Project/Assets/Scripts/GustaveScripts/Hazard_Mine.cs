@@ -13,12 +13,12 @@ public class Hazard_Mine : Hazard
         hasBeenActivated = false; 
     }
 
-    private void Explode() //method that makes mine explode if character steps on it
+    private void Explode() //Method that makes mine explode if character steps on it
     {
-     
-            //explode
-            hasBeenActivated = true;
-        
+
+        isVisible = true; 
+        hasBeenActivated = true;
+       
     }
 
     private void Update()
@@ -31,7 +31,32 @@ public class Hazard_Mine : Hazard
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Explode(); 
+        Explode();
+        if (collision.CompareTag("Bandit"))
+        {
+            collision.gameObject.GetComponent<Bandit>().TakeDamage(DoDamage());
+        } else if (collision.CompareTag("Enemy"))
+        {
+            collision.gameObject.GetComponent<Enemy>().TakeDamage(DoDamage());
+        }
+    }
+
+    
+    protected override int DoDamage()
+    {
+        return hazardDamage; 
+    }
+
+    public void ChangeVisibility() //Changes whether trap is visible
+    {
+        if (this.isVisible)
+        {
+            this.isVisible = false; 
+        }
+        else
+        {
+            this.isVisible = true; 
+        }
     }
 }
 

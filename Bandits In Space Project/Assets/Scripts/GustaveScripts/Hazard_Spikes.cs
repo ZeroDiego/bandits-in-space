@@ -7,12 +7,23 @@ public class Hazard_Spikes : Hazard
     private void Awake()
     {
         hazardDamage = 1;
-        isVisible = false;
+        isVisible = true;
         hasBeenActivated = false; 
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        isVisible = true;
+        if (collision.CompareTag("Bandit"))
+        {
+            collision.gameObject.GetComponent<Bandit>().TakeDamage(DoDamage()); 
+        } else if (collision.CompareTag("Enemy"))
+        {
+            collision.gameObject.GetComponent<Enemy>().TakeDamage(DoDamage());
+        }
+    }
+
+    protected override int DoDamage()
+    {
+        return hazardDamage; 
     }
 }
