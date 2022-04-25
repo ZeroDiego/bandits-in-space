@@ -5,47 +5,33 @@ using UnityEngine;
 public class TileController : MonoBehaviour
 {
     public Bandit bandit;
-    public GameObject[] tiles;
-    public SpriteRenderer[] spriteRenderers;
+
+    public TileTrigger[] tileTriggers;
 
     private Color activeColor = Color.blue;
 
     private void Update()
     {
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        for (int i = 0; i < tileTriggers.Length; i++)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.touches[0].position);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
+            if (tileTriggers[i].isActive)
             {
-                TileUnactive();
-                TileActive(hit);
+                TileActive(i);
             }
             else
             {
-                TileUnactive();
+                TileUnactive(i);
             }
         }
     }
 
-    void TileActive(RaycastHit hit)
+    void TileActive(int index)
     {
-        if (hit.collider.gameObject.CompareTag("Tile"))
-        {
-            int tileID = System.Array.IndexOf(tiles, hit.collider.gameObject);
-            spriteRenderers[tileID].color = activeColor;
-        }
+        tileTriggers[index].GetComponent<SpriteRenderer>().color = activeColor;
     }
 
-    void TileUnactive()
+    void TileUnactive(int index)
     {
-        foreach (SpriteRenderer spriteRenderer in spriteRenderers)
-        {
-            if (spriteRenderer.color == Color.blue)
-            {
-                spriteRenderer.color = new Color32(150, 75, 0, 255);
-            }
-        }
+        tileTriggers[index].GetComponent<SpriteRenderer>().color = new Color32(150, 75, 0, 255);
     }
 }

@@ -4,19 +4,35 @@ using UnityEngine.UI;
 
 public abstract class Bandit : MonoBehaviour, TileMovement
 {
+    public TurnController turnController;
+
     public Image avatar;
     public Button attackButton;
-
-    public float moveSpeed = 5f;
     public Transform movePoint;
+
+    public bool isTurn;
 
     [SerializeField] protected int healthPoints;
     [SerializeField] protected int attackDamage;
 
+    private float moveSpeed = 5f;
+
+    public int getHealthPoints()
+    {
+        return healthPoints;
+    }
+
+    public void setHealthPoints(int healthPoints)
+    {
+        Debug.Log("Hej");
+        this.healthPoints -= healthPoints;
+    }
+
     private void Start()
     {
         EventManager.MovementEvent += TileMovement;
-        movePoint.parent = null;    
+        movePoint.parent = null;
+        attackButton.interactable = false;
     }
 
     private void Update()
@@ -26,7 +42,10 @@ public abstract class Bandit : MonoBehaviour, TileMovement
 
     private void FixedUpdate()
     {
-        attackButton.interactable = CheckForEnemy(transform);
+        if (isTurn)
+        {
+            attackButton.interactable = CheckForEnemy(transform);
+        }
     }
 
     public bool CheckForEnemy(Transform transform)
@@ -49,21 +68,25 @@ public abstract class Bandit : MonoBehaviour, TileMovement
 
     public void TileMovement()
     {
-        if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+        if (isTurn)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.touches[0].position);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
+            if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
             {
-                if (hit.collider.gameObject.CompareTag("Tile"))
+                Ray ray = Camera.main.ScreenPointToRay(Input.touches[0].position);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit))
                 {
-                    Touch touch = Input.GetTouch(0);
-                    Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
-                    touchPosition.z = 0;
-                    Vector3 tilePosition = hit.collider.gameObject.transform.position;
-                    tilePosition.y += 0.5f;
-                    movePoint.position = tilePosition;
+                    if (hit.collider.gameObject.CompareTag("Tile"))
+                    {
+                        Touch touch = Input.GetTouch(0);
+                        Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
+                        touchPosition.z = 0;
+                        Vector3 tilePosition = hit.collider.gameObject.transform.position;
+                        tilePosition.y += 0.5f;
+                        movePoint.position = tilePosition;
+                        turnController.setPlayerTurn(false);
+                    }
                 }
             }
         }
@@ -74,9 +97,8 @@ public abstract class Bandit : MonoBehaviour, TileMovement
         EventManager.MovementEvent -= TileMovement;
     }
 
-    public void TakeDamage( int damageToTake )
+    public void TakeDamage(int damageToTake)
     {
         healthPoints -= damageToTake; 
     }
-
 }

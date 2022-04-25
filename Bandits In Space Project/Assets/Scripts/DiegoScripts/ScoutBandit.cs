@@ -15,11 +15,11 @@ public class ScoutBandit : Bandit
             {
                 if (hitLeft.collider.gameObject.GetComponent<SpriteRenderer>().flipX)
                 {
-                    hitLeft.transform.GetComponent<Enemy>().TakeDamage(attackDamage *= 2);
+                    hitLeft.transform.GetComponent<EnemyHealth>().TakeDamage(attackDamage *= 2);
                 }
                 else
                 {
-                    hitLeft.transform.GetComponent<Enemy>().TakeDamage(attackDamage);
+                    hitLeft.transform.GetComponent<EnemyHealth>().TakeDamage(attackDamage);
                 }
             }
         }
@@ -29,13 +29,15 @@ public class ScoutBandit : Bandit
             {
                 if (!hitRight.collider.gameObject.GetComponent<SpriteRenderer>().flipX)
                 {
-                    hitRight.transform.GetComponent<Enemy>().TakeDamage(attackDamage *= 2);
+                    hitRight.transform.GetComponent<EnemyHealth>().TakeDamage(attackDamage *= 2);
                 }
                 else
                 {
-                    hitRight.transform.GetComponent<Enemy>().TakeDamage(attackDamage);
+                    hitRight.transform.GetComponent<EnemyHealth>().TakeDamage(attackDamage);
                 }
             }
         }
+
+        turnController.setPlayerTurn(false);
     }
 }

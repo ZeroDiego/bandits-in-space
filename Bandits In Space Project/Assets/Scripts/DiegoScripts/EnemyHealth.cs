@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] private int healthPoints = 20;
-    //[SerializeField] private int attackDamage = 10;
+    [SerializeField] private int attackDamage = 10;
 
     public void TakeDamage(int damage)
     {
@@ -15,6 +15,11 @@ public class Enemy : MonoBehaviour
         {
             Incapacitated();
         }
+    }
+
+    public void DealDamage(Bandit bandit)
+    {
+        bandit.setHealthPoints(bandit.getHealthPoints() - attackDamage);
     }
 
     private void Incapacitated()
