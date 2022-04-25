@@ -37,7 +37,7 @@ public class Hazard_Mine : Hazard
             collision.gameObject.GetComponent<Bandit>().TakeDamage(DoDamage());
         } else if (collision.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<Enemy>().TakeDamage(DoDamage());
+            collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(DoDamage());
         }
     }
 

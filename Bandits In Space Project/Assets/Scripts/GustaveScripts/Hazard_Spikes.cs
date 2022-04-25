@@ -18,7 +18,7 @@ public class Hazard_Spikes : Hazard
             collision.gameObject.GetComponent<Bandit>().TakeDamage(DoDamage()); 
         } else if (collision.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<Enemy>().TakeDamage(DoDamage());
+            collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(DoDamage());
         }
     }
 
