@@ -547,7 +547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1791074699018948814, guid: 9d3296298d5ab6142a481b16fc60a5d1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 116
       objectReference: {fileID: 0}
     - target: {fileID: 1791074699018948814, guid: 9d3296298d5ab6142a481b16fc60a5d1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2900,7 +2900,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4826589080771123453, guid: d919ac2f7108bdc45924b8c9bd98bfe3, type: 3}
       propertyPath: m_Name
-      value: Image
+      value: BlackSceneTransition
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d919ac2f7108bdc45924b8c9bd98bfe3, type: 3}
