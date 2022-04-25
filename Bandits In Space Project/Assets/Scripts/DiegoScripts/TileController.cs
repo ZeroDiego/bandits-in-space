@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TileController : MonoBehaviour
 {
-    public Bandit bandit;
+    public PlayerBandit bandit;
 
     public TileTrigger[] tileTriggers;
 

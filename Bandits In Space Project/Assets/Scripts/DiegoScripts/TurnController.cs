@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TurnController : MonoBehaviour
 {
-    public Bandit bandit;
+    public PlayerBandit bandit;
     public EnemyMovement enemyMovement;
 
     private int turnID;

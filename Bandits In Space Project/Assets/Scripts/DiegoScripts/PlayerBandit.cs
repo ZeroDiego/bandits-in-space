@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public abstract class Bandit : MonoBehaviour, TileMovement
+public abstract class PlayerBandit : MonoBehaviour, TileMovement
 {
     public TurnController turnController;
 
@@ -24,7 +24,6 @@ public abstract class Bandit : MonoBehaviour, TileMovement
 
     public void setHealthPoints(int healthPoints)
     {
-        Debug.Log("Hej");
         this.healthPoints -= healthPoints;
     }
 
@@ -70,7 +69,18 @@ public abstract class Bandit : MonoBehaviour, TileMovement
     {
         if (isTurn)
         {
-            if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+
+            if (hit && hit.collider.gameObject.CompareTag("Tile"))
+            {
+                Vector3 tilePosition = hit.collider.gameObject.transform.position;
+                tilePosition.y += 0.5f;
+                movePoint.position = tilePosition;
+                turnController.setPlayerTurn(false);
+            }
+
+
+            /*if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.touches[0].position);
                 RaycastHit hit;
@@ -88,7 +98,7 @@ public abstract class Bandit : MonoBehaviour, TileMovement
                         turnController.setPlayerTurn(false);
                     }
                 }
-            }
+            }*/
         }
     }
 
@@ -99,6 +109,6 @@ public abstract class Bandit : MonoBehaviour, TileMovement
 
     public void TakeDamage(int damageToTake)
     {
-        healthPoints -= damageToTake; 
+        healthPoints -= damageToTake;
     }
 }

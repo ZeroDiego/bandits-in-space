@@ -6,7 +6,7 @@ public class TileTrigger : MonoBehaviour
 {
     public bool isActive;
 
-    private void OnTriggerStay(Collider collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -14,7 +14,7 @@ public class TileTrigger : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {

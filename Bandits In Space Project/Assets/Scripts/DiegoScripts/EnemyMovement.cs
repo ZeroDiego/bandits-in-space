@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour, TileMovement
 {
-    public Bandit bandit;
+    public PlayerBandit bandit;
     public TurnController turnController;
 
     public Transform targetTile;

@@ -17,7 +17,7 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    public void DealDamage(Bandit bandit)
+    public void DealDamage(PlayerBandit bandit)
     {
         bandit.setHealthPoints(bandit.getHealthPoints() - attackDamage);
     }

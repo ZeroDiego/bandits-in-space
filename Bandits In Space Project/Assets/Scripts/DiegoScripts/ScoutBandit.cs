@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoutBandit : Bandit
+public class ScoutBandit : PlayerBandit
 {
     public override void Attack(Transform transform)
     {
