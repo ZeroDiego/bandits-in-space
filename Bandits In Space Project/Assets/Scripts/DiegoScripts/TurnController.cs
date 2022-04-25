@@ -33,18 +33,14 @@ public class TurnController : MonoBehaviour
 
     public void setPlayerTurn(bool value)
     {
-        playerTurn = value;
-
-        if (!value)
-            enemyTurn = true;
+        playerTurn = value; 
+        enemyTurn = !value;
     }
 
     public void setEnemyTurn(bool value)
     {
         enemyTurn = value;
-
-        if (!value)
-            playerTurn = true;
+        playerTurn = !value;
     }
 
     private void PlayerTurn()

@@ -73,32 +73,14 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
 
             if (hit && hit.collider.gameObject.CompareTag("Tile"))
             {
-                Vector3 tilePosition = hit.collider.gameObject.transform.position;
-                tilePosition.y += 0.5f;
-                movePoint.position = tilePosition;
-                turnController.setPlayerTurn(false);
-            }
-
-
-            /*if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
-            {
-                Ray ray = Camera.main.ScreenPointToRay(Input.touches[0].position);
-                RaycastHit hit;
-
-                if (Physics.Raycast(ray, out hit))
+                if (Vector2.Distance(gameObject.transform.position, hit.collider.gameObject.transform.position) <= 4)
                 {
-                    if (hit.collider.gameObject.CompareTag("Tile"))
-                    {
-                        Touch touch = Input.GetTouch(0);
-                        Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
-                        touchPosition.z = 0;
-                        Vector3 tilePosition = hit.collider.gameObject.transform.position;
-                        tilePosition.y += 0.5f;
-                        movePoint.position = tilePosition;
-                        turnController.setPlayerTurn(false);
-                    }
+                    Vector3 tilePosition = hit.collider.gameObject.transform.position;
+                    tilePosition.y += 0.25f;
+                    movePoint.position = tilePosition;
+                    turnController.setPlayerTurn(false);
                 }
-            }*/
+            }
         }
     }
 
