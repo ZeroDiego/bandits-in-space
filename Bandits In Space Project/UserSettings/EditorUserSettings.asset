@@ -6,11 +6,31 @@ EditorUserSettings:
   serializedVersion: 4
   m_ConfigSettings:
     RecentlyUsedScenePath-0:
+<<<<<<< HEAD
       value: 22424703114646680e0b0227036c72111f19352f223d68252320092a
+=======
+<<<<<<< Updated upstream
+      value: 22424703114646680e0b0227036c4b1505032b292926231325281334e7c7212bf6e620eca92f31352d1b
+      flags: 0
+    RecentlyUsedScenePath-1:
+      value: 22424703114646680e0b0227036c700613050f253e24227e38271427fb
+>>>>>>> parent of 0062ff6 (Paus i Overworld)
       flags: 0
     RecentlyUsedScenePath-1:
       value: 22424703114646680e0b0227036c7b191310176439262f2434
       flags: 0
+<<<<<<< HEAD
+=======
+    RecentlyUsedScenePath-3:
+      value: 22424703114646680e0b0227036c72111f19352f223d68252320092a
+      flags: 0
+=======
+      value: 22424703114646680e0b0227036c6c111b07142f1f2b233e2867083debf42d
+      flags: 0
+    RecentlyUsedScenePath-1:
+      value: 22424703114646680e0b0227036c78050503193c182d3524633c133af6f9
+      flags: 0
+>>>>>>> parent of 0062ff6 (Paus i Overworld)
     RecentlyUsedScenePath-2:
       value: 22424703114646680e0b0227036c700613050f253e24227e38271427fb
       flags: 0

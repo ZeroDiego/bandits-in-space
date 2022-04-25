@@ -187,24 +187,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &207952580 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4696422170103187261, guid: 85c8f94406a0f7d4c9aa192888f0ada2, type: 3}
-  m_PrefabInstance: {fileID: 1313746267}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &207952581 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4696422170103187263, guid: 85c8f94406a0f7d4c9aa192888f0ada2, type: 3}
-  m_PrefabInstance: {fileID: 1313746267}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 207952580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f57c18c34ff83ce4d83dd3d02023c01f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &334689852
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,7 +409,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &665158928
 GameObject:
@@ -469,7 +453,7 @@ Transform:
   m_Children:
   - {fileID: 838298388}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &757937951
 PrefabInstance:
@@ -2640,7 +2624,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &845283624
 BoxCollider2D:
@@ -2805,8 +2789,9 @@ Transform:
   - {fileID: 1358090131}
   - {fileID: 334689853}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!1 &1159512194 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8389979026768097595, guid: ce13a7f7e4d1a0340afba80d03d44db0, type: 3}
@@ -3031,6 +3016,8 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4696422170103187262, guid: 85c8f94406a0f7d4c9aa192888f0ada2, type: 3}
   m_PrefabInstance: {fileID: 1313746267}
   m_PrefabAsset: {fileID: 0}
+=======
+>>>>>>> parent of 0062ff6 (Paus i Overworld)
 --- !u!1 &1314088675
 GameObject:
   m_ObjectHideFlags: 0
@@ -3142,7 +3129,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1351403926
 BoxCollider2D:
@@ -3307,13 +3294,14 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -6, y: 1}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
 --- !u!1 &1906529707
 GameObject:
   m_ObjectHideFlags: 0
@@ -3555,3 +3543,5 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8389979026768097594, guid: ce13a7f7e4d1a0340afba80d03d44db0, type: 3}
   m_PrefabInstance: {fileID: 2030782820}
   m_PrefabAsset: {fileID: 0}
+=======
+>>>>>>> parent of 0062ff6 (Paus i Overworld)
