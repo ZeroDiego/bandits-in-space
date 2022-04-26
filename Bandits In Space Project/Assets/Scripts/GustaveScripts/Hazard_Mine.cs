@@ -8,7 +8,7 @@ public class Hazard_Mine : Hazard
     public int explosionRadius;
     private void Awake()
     {
-        hazardDamage = 2;
+        hazardDamage = 25;
         isVisible = false;
         hasBeenActivated = false; 
     }
