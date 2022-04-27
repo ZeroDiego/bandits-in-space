@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 public class SceneChanger : MonoBehaviour
 {
     [SerializeField] private FadeController fadeController;
-    private bool isChangingScene; 
+    private bool isChangingScene;
+    public bool areEnemiesDead; 
     public void ChangeScene()
     {
         fadeController.Fade();
@@ -14,9 +15,10 @@ public class SceneChanger : MonoBehaviour
     }
     private void Update()
     {
-        if (fadeController.imageToFade.color.a >= 1 && isChangingScene)
+        if (fadeController.imageToFade.color.a >= 1 && isChangingScene && areEnemiesDead)
         {
             SceneManager.LoadSceneAsync(gameObject.name);
         }
     }
+
 }

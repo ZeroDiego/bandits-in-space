@@ -2035,7 +2035,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53a7955772d6a794798dab1d1ff47a6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loopPoint: 0
+  loopEndPoint: 0
+  loopStartPoint: 0
+  currentTrack: {fileID: 0}
+  silentTrack: {fileID: 0}
 --- !u!1 &994053427
 GameObject:
   m_ObjectHideFlags: 0
@@ -3298,7 +3301,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -3335,8 +3338,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54c60f1ee7306034daeb8c65d89da220, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hazardDamage: 25
+  hazardDamage: 50
   explosionRadius: 0
+--- !u!1 &1637346125
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1637346126}
+  - component: {fileID: 1637346127}
+  m_Layer: 0
+  m_Name: GameOverController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1637346126
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1637346125}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.319915, y: 0.3365277, z: -12.818395}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1637346127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1637346125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 486ee0a953b85fc45b3e17910d1cde3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerBandits:
+  - {fileID: 427342148}
+  arePlayerBanditsDead: 00
 --- !u!1001 &1691371434
 PrefabInstance:
   m_ObjectHideFlags: 0

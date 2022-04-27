@@ -31,7 +31,7 @@ public class FadeController : MonoBehaviour
             imageToFade.color = new Color(0, 0, 0, fadeTime);          
         } else if( imageToFade.color.a > 0 )
         {
-            fadeTime = imageToFade.color.a - ((fadeSpeed - 1f) * Time.deltaTime);
+            fadeTime = imageToFade.color.a - ((fadeSpeed - 2f) * Time.deltaTime);
             imageToFade.color = new Color(0, 0, 0, fadeTime);
         }       
     }
