@@ -914,7 +914,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f0bd3f7d0ed08c48bd867d215371675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damagePopup: {fileID: 0}
+  damagePopup: {fileID: 5888477830679469304, guid: 377006cfad4d21b4cb6dfad670808fd0, type: 3}
   turnController: {fileID: 249369995}
   avatar: {fileID: 0}
   attackButton: {fileID: 738961031}
