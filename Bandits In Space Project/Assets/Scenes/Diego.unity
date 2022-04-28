@@ -3828,7 +3828,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f783db97bb805584d9ffbea70346ce5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoints: 20
+  damagePopup: {fileID: 5888477830679469304, guid: 377006cfad4d21b4cb6dfad670808fd0, type: 3}
+  healthPoints: 31
   attackDamage: 10
 --- !u!114 &2015224201
 MonoBehaviour:
@@ -4142,11 +4143,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6325122420799540615, guid: 98841a450d615dc4286170d344dcb948, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.03
+      value: 3.04
       objectReference: {fileID: 0}
     - target: {fileID: 6325122420799540615, guid: 98841a450d615dc4286170d344dcb948, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1.44
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: 6325122420799540615, guid: 98841a450d615dc4286170d344dcb948, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

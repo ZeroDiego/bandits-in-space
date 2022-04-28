@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+    public DamagePopup damagePopup;
+
     [SerializeField] private int healthPoints = 20;
     [SerializeField] private int attackDamage = 10;
 
     public void TakeDamage(int damage)
     {
         healthPoints -= damage;
+        damagePopup.Create(transform.position, damage);
 
         if (healthPoints <= 0)
         {
