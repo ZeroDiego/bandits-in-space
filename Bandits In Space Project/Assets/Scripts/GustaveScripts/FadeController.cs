@@ -22,6 +22,11 @@ public class FadeController : MonoBehaviour
         isActivated = true;
     }
 
+    public void Awake()
+    {
+        nonTransparentColor(imageToFade);
+    }
+
     public void nonTransparentColor(Image nonTransparent)
     {
         nonTransparent.color = new Color(0, 0, 0, 1);
@@ -45,7 +50,7 @@ public class FadeController : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (isActivated)
         {
