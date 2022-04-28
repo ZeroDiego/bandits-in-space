@@ -1441,6 +1441,7 @@ GameObject:
   m_Component:
   - component: {fileID: 933024697}
   - component: {fileID: 933024698}
+  - component: {fileID: 933024699}
   m_Layer: 5
   m_Name: SoundToggle
   m_TagString: Untagged
@@ -1517,6 +1518,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
+--- !u!114 &933024699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933024696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd50ee8376a9dfb4d80e3328cf1912ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1278103132
 GameObject:
   m_ObjectHideFlags: 0
@@ -1994,8 +2007,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53a7955772d6a794798dab1d1ff47a6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loopEndPoint: 5
-  loopStartPoint: 0
+  loopEndPoint: 255
+  loopStartPoint: 5
   currentTrack: {fileID: 1386603507}
   silentTrack: {fileID: 200231979}
 --- !u!1 &1449589902
