@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class Hazard_Mine : Hazard
 {
-
     public int explosionRadius;
     private void Awake()
     {
-        isVisible = false;
+        isVisible = true;
         hasBeenActivated = false; 
     }
 
@@ -16,7 +15,6 @@ public class Hazard_Mine : Hazard
     {
         isVisible = true; 
         hasBeenActivated = true;    
-
     }
 
     private void Update()
@@ -36,16 +34,18 @@ public class Hazard_Mine : Hazard
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Explode();
+    {     
         if (collision.CompareTag("Player"))
         {
             Debug.Log("XD");
             collision.gameObject.GetComponent<PlayerBandit>().TakeDamage(DoDamage());
-        } else if (collision.CompareTag("Enemy"))
+            Explode();
+        } else 
         {
+            Debug.Log("KKKKALAKA"); 
             collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(DoDamage());
-        }
+            Explode();
+        }      
     }
 
     

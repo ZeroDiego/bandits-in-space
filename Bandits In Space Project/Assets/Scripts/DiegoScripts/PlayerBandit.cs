@@ -37,7 +37,6 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
     private void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
-        Debug.Log(healthPoints); 
     }
 
     private void FixedUpdate()
