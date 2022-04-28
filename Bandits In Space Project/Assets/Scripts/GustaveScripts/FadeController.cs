@@ -6,34 +6,55 @@ using UnityEngine.UI;
 public class FadeController : MonoBehaviour
 {
 
-    private float fadeSpeed = 2.3f; 
+    private float fadeSpeed = 2.3f;
     [SerializeField] private bool isActivated;
     public Image imageToFade;
     private float fadeTime;
+
+
+    private void Start()
+    {
+        nonTransparentColor(imageToFade);
+    }
 
     public void Fade()
     {
         isActivated = true;
     }
 
-    private void Awake()
+    public void nonTransparentColor(Image nonTransparent)
     {
-        imageToFade.color = new Color(0, 0, 0, 1);
-        
+        nonTransparent.color = new Color(0, 0, 0, 1);
+    }
+
+    public void FadeOut()
+    {
+        if (imageToFade.color.a <= 1)
+        {
+            fadeTime = imageToFade.color.a + (fadeSpeed * Time.deltaTime);
+            imageToFade.color = new Color(0, 0, 0, fadeTime);
+        }
+    }
+
+    public void FadeIn()
+    {
+        if (imageToFade.color.a > 0)
+        {
+            fadeTime = imageToFade.color.a - (fadeSpeed * Time.deltaTime);
+            imageToFade.color = new Color(0, 0, 0, fadeTime);
+        }
     }
 
     private void Update()
     {
         if (isActivated)
         {
-            
-            fadeTime = imageToFade.color.a + (fadeSpeed * Time.deltaTime);
-            imageToFade.color = new Color(0, 0, 0, fadeTime);          
-        } else if( imageToFade.color.a > 0 )
+            FadeOut();
+        }
+        else if (!isActivated)
         {
-            fadeTime = imageToFade.color.a - ((fadeSpeed - 2f) * Time.deltaTime);
-            imageToFade.color = new Color(0, 0, 0, fadeTime);
-        }       
+            FadeIn();
+        }
     }
 
 }
