@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public abstract class PlayerBandit : MonoBehaviour, TileMovement
 {
+    public DamagePopup damagePopup;
     public TurnController turnController;
 
     public Image avatar;
@@ -92,5 +93,6 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
     public void TakeDamage(int damageToTake)
     {
         healthPoints -= damageToTake;
+        damagePopup.Create(transform.position, damageToTake);
     }
 }
