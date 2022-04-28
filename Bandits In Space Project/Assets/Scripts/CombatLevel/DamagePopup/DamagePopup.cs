@@ -11,6 +11,7 @@ public class DamagePopup : MonoBehaviour
     //Create a Damage Popup
     public DamagePopup Create(Vector3 position, int damageAmount)
     {
+        position = new Vector3(position.x + 1.3f, position.y);
         Transform damagePopupTransform = Instantiate(pfdamagePopup, position, Quaternion.identity);
 
         DamagePopup damagePopup = damagePopupTransform.GetComponent<DamagePopup>();
@@ -42,7 +43,7 @@ public class DamagePopup : MonoBehaviour
         sortingOrder++;
         textMesh.sortingOrder = sortingOrder;
 
-        moveVector = new Vector3(1f, 1.5f);
+        moveVector = new Vector3(0,1f);
     }
 
     private void Update()
