@@ -7,7 +7,7 @@ public class FadeController : MonoBehaviour
 {
 
     private float fadeSpeed = 2.3f;
-    [SerializeField] private bool isActivated;
+    [SerializeField] private bool isActivated = false;
     public Image imageToFade;
     private float fadeTime;
 
