@@ -13,7 +13,7 @@ public class MusicController : MonoBehaviour
     {
         if (gameObject.CompareTag("Music"))
         {
-            currentTrack = gameObject.GetComponent<AudioSource>(); 
+            currentTrack = gameObject.GetComponent<AudioSource>();
         } else if(gameObject.name == "MusicLoop")
         {
             silentTrack = gameObject.GetComponent<AudioSource>(); 
@@ -25,10 +25,8 @@ public class MusicController : MonoBehaviour
     {
         if(currentTrack.time >= loopEndPoint)
         {
-            currentTrack = silentTrack; 
-            silentTrack = currentTrack;
-            silentTrack.Play();     
-        }
+            currentTrack.time = loopStartPoint; 
+        } 
     }
 
 }

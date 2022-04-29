@@ -21,7 +21,9 @@ public class Hazard_Mine : Hazard
     {
         if (hasBeenActivated)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            Debug.Log(gameObject.name + " has been exploded");
+            gameObject.SetActive(false);
         }
 
         if (!isVisible)
@@ -37,12 +39,12 @@ public class Hazard_Mine : Hazard
     {     
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("XD");
+            //Debug.Log("XD");
             collision.gameObject.GetComponent<PlayerBandit>().TakeDamage(DoDamage());
             Explode();
         } else 
         {
-            Debug.Log("KKKKALAKA"); 
+            //Debug.Log("KKKKALAKA"); 
             collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(DoDamage());
             Explode();
         }      
