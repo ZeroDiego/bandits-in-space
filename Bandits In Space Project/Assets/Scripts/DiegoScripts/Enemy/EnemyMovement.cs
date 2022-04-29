@@ -69,7 +69,6 @@ public class EnemyMovement : MonoBehaviour, TileMovement
         else
         {
             enemyHealth.DealDamage(bandit);
-            turnController.setEnemyTurn(false);
         }
 
         if (targetTile.position.y > 1f)
@@ -85,6 +84,10 @@ public class EnemyMovement : MonoBehaviour, TileMovement
                 targetTile.position = new Vector3(targetTile.position.x + 1.5f, -1.25f, 0);
             else
                 targetTile.position = new Vector3(targetTile.position.x - 1.5f, -1.25f, 0);
+        }
+        else if (targetTile.position.Equals(banditTransform.position))
+        {
+            targetTile.position = transform.position;
         }
     }
 }

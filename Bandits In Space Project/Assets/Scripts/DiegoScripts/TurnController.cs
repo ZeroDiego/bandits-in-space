@@ -4,48 +4,68 @@ using UnityEngine;
 
 public class TurnController : MonoBehaviour
 {
-    public PlayerBandit bandit;
+    public PlayerBandit[] bandits;
     public EnemyMovement enemyMovement;
+
+    [SerializeField] private float turnTransistionTimer;
+    private float turnTransistionDuration = 1.5f;
 
     private int turnID;
 
     [SerializeField] private bool playerTurn;
     [SerializeField] private bool enemyTurn;
+    [SerializeField] private bool turnTransistionBoolean;
 
     void Start()
     {
         turnID = 0;
+        turnTransistionTimer = turnTransistionDuration;
         playerTurn = true;
     }
 
     
     void Update()
     {
-        if (playerTurn)
+        if (turnTransistionTimer <= 0.0f)
         {
-            PlayerTurn();
+            turnTransistionBoolean = false;
+            turnTransistionTimer = turnTransistionDuration;
         }
-        else if (enemyTurn)
+
+        if (turnTransistionBoolean)
         {
-            EnemyTurn();
+            TurnTransistion();
+        }
+        else
+        {
+            if (playerTurn)
+            {
+                PlayerTurn();
+            }
+            else if (enemyTurn)
+            {
+                EnemyTurn();
+            }
         }
     }
 
     public void setPlayerTurn(bool value)
     {
-        playerTurn = value; 
+        turnTransistionBoolean = true;
+        playerTurn = value;
         enemyTurn = !value;
     }
 
     public void setEnemyTurn(bool value)
     {
+        turnTransistionBoolean = true;
         enemyTurn = value;
         playerTurn = !value;
     }
 
     private void PlayerTurn()
     {
-        bandit.isTurn = true;
+        //bandits.isTurn = true;
         enemyMovement.isTurn = false;
         turnID++;
     }
@@ -53,7 +73,14 @@ public class TurnController : MonoBehaviour
     private void EnemyTurn()
     {
         enemyMovement.isTurn = true;
-        bandit.isTurn = false;
+        //bandits.isTurn = false;
         turnID++;
+    }
+
+    private void TurnTransistion()
+    {
+        //bandits.isTurn = false;
+        enemyMovement.isTurn = false;
+        turnTransistionTimer -= Time.deltaTime;
     }
 }

@@ -6,7 +6,6 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
 {
     public TurnController turnController;
 
-    public Image avatar;
     public Button attackButton;
     public Transform movePoint;
 
@@ -29,7 +28,6 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
 
     private void Start()
     {
-        EventManager.MovementEvent += TileMovement;
         movePoint.parent = null;
         attackButton.interactable = false;
     }
@@ -37,6 +35,14 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
     private void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
+
+        if (isTurn)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                TileMovement();
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -67,26 +73,18 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
 
     public void TileMovement()
     {
-        if (isTurn)
-        {
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
-            if (hit && hit.collider.gameObject.CompareTag("Tile"))
+        if (hit && hit.collider.gameObject.CompareTag("Tile"))
+        {
+            if (Vector2.Distance(gameObject.transform.position, hit.collider.gameObject.transform.position) <= 4)
             {
-                if (Vector2.Distance(gameObject.transform.position, hit.collider.gameObject.transform.position) <= 4)
-                {
-                    Vector3 tilePosition = hit.collider.gameObject.transform.position;
-                    tilePosition.y += 0.25f;
-                    movePoint.position = tilePosition;
-                    turnController.setPlayerTurn(false);
-                }
+                Vector3 tilePosition = hit.collider.gameObject.transform.position;
+                tilePosition.y += 0.25f;
+                movePoint.position = tilePosition;
+                turnController.setPlayerTurn(false);
             }
         }
-    }
-
-    private void OnDisable()
-    {
-        EventManager.MovementEvent -= TileMovement;
     }
 
     public void TakeDamage(int damageToTake)
