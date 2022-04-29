@@ -38,6 +38,6 @@ public class ScoutBandit : PlayerBandit
             }
         }
 
-        turnController.setPlayerTurn(false);
+        turnController.SetTurn();
     }
 }

@@ -12,6 +12,7 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
 
     public bool isTurn;
 
+    [SerializeField] protected int maxHealthPoints;
     [SerializeField] protected int healthPoints;
     [SerializeField] protected int attackDamage;
 
@@ -29,6 +30,7 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
 
     private void Start()
     {
+        healthPoints = maxHealthPoints;
         movePoint.parent = null;
         attackButton.interactable = false;
     }
@@ -83,7 +85,7 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
                 Vector3 tilePosition = hit.collider.gameObject.transform.position;
                 tilePosition.y += 0.25f;
                 movePoint.position = tilePosition;
-                turnController.setPlayerTurn(false);
+                turnController.SetTurn();
             }
         }
     }

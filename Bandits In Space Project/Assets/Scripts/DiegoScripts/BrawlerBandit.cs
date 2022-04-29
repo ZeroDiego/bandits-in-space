@@ -38,6 +38,6 @@ public class BrawlerBandit : PlayerBandit
             }
         }
 
-        turnController.setPlayerTurn(false);
+        turnController.SetTurn();
     }
 }
