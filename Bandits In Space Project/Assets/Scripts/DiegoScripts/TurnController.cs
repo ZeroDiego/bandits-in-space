@@ -1,13 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TurnController : MonoBehaviour
 {
     public PlayerBandit[] bandits;
     public EnemyMovement[] enemies;
 
-    public string[] turnOrder;
+    public Text turnText;
+
+    [SerializeField] private string[] turnOrder;
 
     [SerializeField] private float turnTransistionTimer;
     private float turnTransistionDuration = 1.5f;
@@ -22,10 +26,22 @@ public class TurnController : MonoBehaviour
         turnID = 0;
         turnTransistionTimer = turnTransistionDuration;
 
+        turnOrder = new string[bandits.Length + enemies.Length];
+
+        for (int i = 0; i < bandits.Length; i++)
+        {
+            turnOrder[i] = bandits[i].gameObject.name;
+        }
+
+        for (int i = bandits.Length; i < turnOrder.Length; i++)
+        {
+            turnOrder[i] = enemies[i - bandits.Length].gameObject.name;
+        }
+
         FirstTurn();
     }
 
-    
+
     void Update()
     {
         if (turnTransistionTimer <= 0.0f)
@@ -44,47 +60,103 @@ public class TurnController : MonoBehaviour
         }
     }
 
+    public void SetEnemyArray(string turnActor)
+    {
+        int index = 0;
+
+        for (int i = 0; i < turnOrder.Length; i++)
+        {
+            if (turnOrder[i].Equals(turnActor))
+            {
+                index = i;
+            }
+        }
+
+        for (int i = index - bandits.Length; i < enemies.Length - 1; i++)
+        {
+            enemies[i] = enemies[i + 1];
+        }
+
+        Array.Resize(ref enemies, enemies.Length - 1);
+    }
+
     public void SetTurn()
     {
         turnTransistionBoolean = true;
         turnID++;
+        turnText.text = "Turn: " + turnID;
     }
 
     private void FirstTurn()
     {
         bandits[0].isTurn = true;
         turnID++;
+        turnText.text = "Turn: " + turnID;
     }
 
     private void NextTurn()
     {
         if (turnID % turnOrder.Length == 0)
         {
-            bandits[0].isTurn = true;
-            bandits[1].isTurn = false;
-            enemies[0].isTurn = false;
-            enemies[1].isTurn = false;
+            if (bandits[0] != null)
+                bandits[0].isTurn = true;
+            if (bandits[1] != null)
+                bandits[1].isTurn = false;
+            
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                enemies[i].isTurn = false;
+            }
         }
         else if (turnID % turnOrder.Length == 1)
         {
-            bandits[0].isTurn = false;
-            bandits[1].isTurn = true;
-            enemies[0].isTurn = false;
-            enemies[1].isTurn = false;
+            if (bandits[0] != null)
+                bandits[0].isTurn = false;
+            if (bandits[1] != null)
+                bandits[1].isTurn = true;
+
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                enemies[i].isTurn = false;
+            }
         }
         else if (turnID % turnOrder.Length == 2)
         {
-            bandits[0].isTurn = false;
-            bandits[1].isTurn = false;
-            enemies[0].isTurn = true;
-            enemies[1].isTurn = false;
+            for (int i = 0; i < bandits.Length; i++)
+            {
+                bandits[i].isTurn = false;
+            }
+
+            if (enemies.Length < 2)
+            {
+                enemies[0].isTurn = true;
+            }
+            else
+            {
+                if (enemies[0] != null)
+                    enemies[0].isTurn = true;
+                if (enemies[1] != null)
+                    enemies[1].isTurn = false;
+            }
         }
         else if (turnID % turnOrder.Length == 3)
         {
-            bandits[0].isTurn = false;
-            bandits[1].isTurn = false;
-            enemies[0].isTurn = false;
-            enemies[1].isTurn = true;
+            for (int i = 0; i < bandits.Length; i++)
+            {
+                bandits[i].isTurn = false;
+            }
+
+            if (enemies.Length < 2)
+            {
+                enemies[0].isTurn = true;
+            }
+            else
+            {
+                if (enemies[0] != null)
+                    enemies[0].isTurn = false;
+                if (enemies[1] != null)
+                    enemies[1].isTurn = true;
+            }
         }
     }
 

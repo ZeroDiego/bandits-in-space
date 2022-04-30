@@ -63,8 +63,8 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
 
     public bool CheckForEnemy(Transform transform)
     {
-        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector2.left, 3, 1 << 6);
-        RaycastHit2D hitRight = Physics2D.Raycast(transform.position, -Vector2.left, 3, 1 << 6);
+        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector2.left, 4, 1 << 6);
+        RaycastHit2D hitRight = Physics2D.Raycast(transform.position, -Vector2.left, 4, 1 << 6);
 
         if (hitLeft.collider != null || hitRight.collider != null)
         {
@@ -85,7 +85,7 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
 
         if (hit && hit.collider.gameObject.CompareTag("Tile"))
         {
-            if (Vector2.Distance(gameObject.transform.position, hit.collider.gameObject.transform.position) <= 4)
+            if (Vector2.Distance(gameObject.transform.position, hit.collider.gameObject.transform.position) < 3)
             {
                 Vector3 tilePosition = hit.collider.gameObject.transform.position;
                 tilePosition.y += 0.25f;

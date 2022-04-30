@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+    public TurnController turnController;
     public DamagePopup damagePopup;
 
     [SerializeField] private int healthPoints = 20;
@@ -35,6 +36,7 @@ public class EnemyHealth : MonoBehaviour
 
     private void Incapacitated()
     {
+        turnController.SetEnemyArray(gameObject.name);
         Destroy(gameObject);
     }
 }
