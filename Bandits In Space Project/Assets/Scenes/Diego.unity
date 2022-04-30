@@ -459,7 +459,7 @@ MonoBehaviour:
   attackButton: {fileID: 738961031}
   movePoint: {fileID: 1557290961}
   isTurn: 0
-  maxHealthPoints: 100
+  maxHealthPoints: 50
   healthPoints: 0
   attackDamage: 10
 --- !u!61 &30121416
@@ -3497,7 +3497,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1628403887
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3643,7 +3643,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerBandits:
   - {fileID: 427342148}
-  arePlayerBanditsDead: 00
+  - {fileID: 30121415}
+  arePlayerBanditsDead: 0000
 --- !u!1001 &1691371434
 PrefabInstance:
   m_ObjectHideFlags: 0

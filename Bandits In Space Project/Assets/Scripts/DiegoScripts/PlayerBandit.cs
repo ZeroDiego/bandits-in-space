@@ -46,6 +46,11 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
                 TileMovement();
             }
         }
+
+        if(getHealthPoints() <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void FixedUpdate()

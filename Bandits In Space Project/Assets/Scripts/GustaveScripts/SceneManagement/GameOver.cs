@@ -15,7 +15,7 @@ public class GameOver : MonoBehaviour
     }
     void Update()
     {      
-        for(int i = 0; i < playerBandits.Length; i++)
+        /*for(int i = 0; i < playerBandits.Length; i++)
         {
             if (playerBandits[i].getHealthPoints() <= 0)
             {
@@ -35,6 +35,11 @@ public class GameOver : MonoBehaviour
                 SceneManager.LoadScene("MainMenu"); 
             }
         }
-                           
+             */      
+        
+        if(GameObject.FindGameObjectsWithTag("Player").Length <= 0)
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 }
