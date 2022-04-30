@@ -20,6 +20,14 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if(healthPoints <= 0)
+        {
+            Incapacitated();
+        }
+    }
+
     public void DealDamage(PlayerBandit bandit)
     {
         bandit.setHealthPoints(bandit.getHealthPoints() - attackDamage);
