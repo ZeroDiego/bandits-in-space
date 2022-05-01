@@ -14,7 +14,7 @@ public class TurnController : MonoBehaviour
     [SerializeField] private string[] turnOrder;
 
     [SerializeField] private float turnTransistionTimer;
-    private float turnTransistionDuration = 1.5f;
+    [SerializeField] private float turnTransistionDuration;
 
     [SerializeField] private int turnID;
 
@@ -90,8 +90,6 @@ public class TurnController : MonoBehaviour
     private void FirstTurn()
     {
         bandits[0].isTurn = true;
-        turnID++;
-        turnText.text = "Turn: " + turnID;
     }
 
     private void NextTurn()

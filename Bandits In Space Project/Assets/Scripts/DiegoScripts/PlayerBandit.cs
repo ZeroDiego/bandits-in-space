@@ -16,23 +16,15 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
     [SerializeField] protected int healthPoints;
     [SerializeField] protected int attackDamage;
 
+    protected float attackRange = 3f;
+
     private float moveSpeed = 5f;
-
-    public int getHealthPoints()
-    {
-        return healthPoints;
-    }
-
-    public void setHealthPoints(int healthPoints)
-    {
-        this.healthPoints -= healthPoints;
-    }
 
     private void Start()
     {
         healthPoints = maxHealthPoints;
         movePoint.parent = null;
-        attackButton.interactable = false;
+        attackButton.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -47,7 +39,7 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
             }
         }
 
-        if(getHealthPoints() <= 0)
+        if (healthPoints <= 0)
         {
             Destroy(gameObject);
         }
@@ -57,14 +49,14 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
     {
         if (isTurn)
         {
-            attackButton.interactable = CheckForEnemy(transform);
+            attackButton.gameObject.SetActive(CheckForEnemy(transform));
         }
     }
 
     public bool CheckForEnemy(Transform transform)
     {
-        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector2.left, 4, 1 << 6);
-        RaycastHit2D hitRight = Physics2D.Raycast(transform.position, -Vector2.left, 4, 1 << 6);
+        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector2.left, attackRange, 1 << 6);
+        RaycastHit2D hitRight = Physics2D.Raycast(transform.position, -Vector2.left, attackRange, 1 << 6);
 
         if (hitLeft.collider != null || hitRight.collider != null)
         {
@@ -77,7 +69,7 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
         return false;
     }
 
-    abstract public void Attack(Transform transform);
+    abstract public void Attack();
 
     public void TileMovement()
     {
@@ -85,7 +77,7 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
 
         if (hit && hit.collider.gameObject.CompareTag("Tile"))
         {
-            if (Vector2.Distance(gameObject.transform.position, hit.collider.gameObject.transform.position) < 3)
+            if (Vector2.Distance(gameObject.transform.position, hit.collider.gameObject.transform.position) < 2.5f)
             {
                 Vector3 tilePosition = hit.collider.gameObject.transform.position;
                 tilePosition.y += 0.25f;

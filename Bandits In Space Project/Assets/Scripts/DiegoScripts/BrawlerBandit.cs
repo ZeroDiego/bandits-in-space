@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class BrawlerBandit : PlayerBandit
 {
-    public override void Attack(Transform transform)
+    public override void Attack()
     {
-        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector2.left, 4, 1 << 6);
-        RaycastHit2D hitRight = Physics2D.Raycast(transform.position, -Vector2.left, 4, 1 << 6);
+        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector2.left, attackRange, 1 << 6);
+        RaycastHit2D hitRight = Physics2D.Raycast(transform.position, -Vector2.left, attackRange, 1 << 6);
 
         if (hitLeft.collider != null)
         {
@@ -38,6 +38,7 @@ public class BrawlerBandit : PlayerBandit
             }
         }
 
+        attackButton.gameObject.SetActive(false);
         turnController.SetTurn();
     }
 }

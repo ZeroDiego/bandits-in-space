@@ -42,7 +42,7 @@ public class EnemyMovement : MonoBehaviour, TileMovement
 
         for (int i = 0; i < bandits.Length - 1; i++)
         {
-            if (Vector3.Distance(bandits[i].transform.position, transform.position) > Vector3.Distance(bandits[i + 1].transform.position, transform.position))
+            if (Vector3.Distance(bandits[i].transform.position, transform.position) < Vector3.Distance(bandits[i + 1].transform.position, transform.position))
             {
                 targetDistance = Vector3.Distance(bandits[i].transform.position, transform.position);
                 targetPlayer = bandits[i];
@@ -52,41 +52,41 @@ public class EnemyMovement : MonoBehaviour, TileMovement
                 targetDistance = Vector3.Distance(bandits[i + 1].transform.position, transform.position);
                 targetPlayer = bandits[i + 1];
             }
-
-            Debug.Log("TargetPlayer: " + targetPlayer);
-            Debug.Log("TargetDistance: " + targetDistance);
         }
 
         float upOrDown = Random.Range(0, 2);
 
-        if (Vector3.Distance(targetPlayer.transform.position, transform.position) > 0 && targetDistance > 0)
+        if (targetDistance > 3.0f)
         {
-            if (upOrDown == 0)
+            if (targetPlayer.transform.position.x > transform.position.x)
             {
-                targetTile.position += new Vector3(-1.5f, -0.75f, 0);
+                if (upOrDown == 0)
+                {
+                    targetTile.position += new Vector3(1.5f, -0.75f, 0);
+                }
+                else
+                {
+                    targetTile.position += new Vector3(1.5f, 0.75f, 0);
+                }
             }
             else
             {
-                targetTile.position += new Vector3(-1.5f, 0.75f, 0);
+                if (upOrDown == 0)
+                {
+                    targetTile.position += new Vector3(-1.5f, -0.75f, 0);
+                }
+                else
+                {
+                    targetTile.position += new Vector3(-1.5f, 0.75f, 0);
+                }
             }
         }
-        else if (Vector3.Distance(targetPlayer.transform.position, transform.position) < 0 && targetDistance > 0)
-        {
-            if (upOrDown == 0)
-            {
-                targetTile.position += new Vector3(1.5f, -0.75f, 0);
-            }
-            else
-            {
-                targetTile.position += new Vector3(1.5f, 0.75f, 0);
-            }
-        }
-        else if (targetDistance > -1.5f || targetDistance < 1.5f)
+        else
         {
             enemyHealth.DealDamage(targetPlayer);
         }
 
-        if (targetTile.position.y > 3.75f)
+        if (targetTile.position.y > 4.0f)
         {
             if (targetTile.position.x > -9.0f)
                 targetTile.position = new Vector3(targetTile.position.x + 1.5f, 3.75f, 0);
@@ -102,7 +102,17 @@ public class EnemyMovement : MonoBehaviour, TileMovement
         }
         else if (targetTile.position.x < -9.0f)
         {
-
+            if (targetTile.position.y > -1.5f)
+                targetTile.position = new Vector3(-7.5f, targetTile.position.y + 1.25f, 0);
+            else
+                targetTile.position = new Vector3(-7.5f, targetTile.position.y - 1.25f, 0);
+        }
+        else if (targetTile.position.x > 9.0f)
+        {
+            if (targetTile.position.y > -1.5f)
+                targetTile.position = new Vector3(7.5f, targetTile.position.y + 1.25f, 0);
+            else
+                targetTile.position = new Vector3(7.5f, targetTile.position.y - 1.25f, 0);
         }
         
         if (targetTile.position.Equals(targetPlayer.transform.position))

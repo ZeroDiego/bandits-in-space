@@ -31,7 +31,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void DealDamage(PlayerBandit bandit)
     {
-        bandit.setHealthPoints(bandit.getHealthPoints() - attackDamage);
+        bandit.TakeDamage(attackDamage);
     }
 
     private void Incapacitated()
