@@ -30,8 +30,8 @@ public class EnemyHealth : MonoBehaviour
     }
 
     public void DealDamage(PlayerBandit bandit)
-    {
-        bandit.TakeDamage(attackDamage);
+    {     
+       bandit.TakeDamage(attackDamage);
     }
 
     private void Incapacitated()
