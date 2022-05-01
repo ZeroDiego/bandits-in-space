@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+    public PlayerBandit[] players;
     public TurnController turnController;
     public DamagePopup damagePopup;
 
@@ -23,7 +24,7 @@ public class EnemyHealth : MonoBehaviour
 
     private void Update()
     {
-        if(healthPoints <= 0)
+        if (healthPoints <= 0)
         {
             Incapacitated();
         }
@@ -36,6 +37,11 @@ public class EnemyHealth : MonoBehaviour
 
     private void Incapacitated()
     {
+        foreach (PlayerBandit player in players)
+        {
+            player.SetEnemyArray(this);
+        }
+
         turnController.SetEnemyArray(gameObject.name);
         Destroy(gameObject);
     }

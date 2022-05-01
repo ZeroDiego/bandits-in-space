@@ -17,12 +17,17 @@ public class TurnController : MonoBehaviour
     [SerializeField] private float turnTransistionDuration;
 
     [SerializeField] private int turnID;
+    private int maxPlayers;
+    private int maxEnemies;
 
     [SerializeField] private bool nextTurn;
     [SerializeField] private bool turnTransistionBoolean;
 
     void Start()
     {
+        maxPlayers = bandits.Length;
+        maxEnemies = enemies.Length;
+
         turnID = 0;
         turnTransistionTimer = turnTransistionDuration;
 
@@ -60,6 +65,26 @@ public class TurnController : MonoBehaviour
         }
     }
 
+    public void SetPlayerArray(string turnActor)
+    {
+        int index = 0;
+
+        for (int i = 0; i < turnOrder.Length; i++)
+        {
+            if (turnOrder[i].Equals(turnActor))
+            {
+                index = i;
+            }
+        }
+
+        for (int i = index; i < bandits.Length - 1; i++)
+        {
+            bandits[i] = bandits[i + 1];
+        }
+
+        Array.Resize(ref bandits, bandits.Length - 1);
+    }
+
     public void SetEnemyArray(string turnActor)
     {
         int index = 0;
@@ -80,27 +105,34 @@ public class TurnController : MonoBehaviour
         Array.Resize(ref enemies, enemies.Length - 1);
     }
 
-    public void SetTurn()
+    public void SetTurn(string turnActor)
     {
         turnTransistionBoolean = true;
         turnID++;
-        turnText.text = "Turn: " + turnID;
+        turnText.text = "Actor: " + turnActor + "\nTurn: " + turnID;
     }
 
     private void FirstTurn()
     {
         bandits[0].isTurn = true;
+        string turnActor = bandits[0].gameObject.name;
+        turnText.text = "Actor: " + turnActor + "\nTurn: " + turnID;
     }
 
     private void NextTurn()
     {
         if (turnID % turnOrder.Length == 0)
         {
-            if (bandits[0] != null)
+            if (bandits.Length < maxPlayers)
+            {
                 bandits[0].isTurn = true;
-            if (bandits[1] != null)
+            }
+            else
+            {
+                bandits[0].isTurn = true;
                 bandits[1].isTurn = false;
-            
+            }
+
             for (int i = 0; i < enemies.Length; i++)
             {
                 enemies[i].isTurn = false;
@@ -108,10 +140,24 @@ public class TurnController : MonoBehaviour
         }
         else if (turnID % turnOrder.Length == 1)
         {
-            if (bandits[0] != null)
+            if (bandits.Length < maxPlayers && enemies.Length == maxEnemies)
+            {
+                bandits[0].isTurn = true;
+            }
+            else if (bandits.Length == maxPlayers && enemies.Length < maxEnemies)
+            {
                 bandits[0].isTurn = false;
-            if (bandits[1] != null)
                 bandits[1].isTurn = true;
+            }
+            else if (bandits.Length == maxPlayers && enemies.Length == maxEnemies)
+            {
+                bandits[0].isTurn = false;
+                bandits[1].isTurn = true;
+            }
+            else if (bandits.Length < maxPlayers && enemies.Length < maxEnemies)
+            {
+                bandits[0].isTurn = true;
+            }
 
             for (int i = 0; i < enemies.Length; i++)
             {
@@ -125,16 +171,14 @@ public class TurnController : MonoBehaviour
                 bandits[i].isTurn = false;
             }
 
-            if (enemies.Length < 2)
+            if (enemies.Length < maxEnemies)
             {
                 enemies[0].isTurn = true;
             }
             else
             {
-                if (enemies[0] != null)
-                    enemies[0].isTurn = true;
-                if (enemies[1] != null)
-                    enemies[1].isTurn = false;
+                enemies[0].isTurn = true;
+                enemies[1].isTurn = false;
             }
         }
         else if (turnID % turnOrder.Length == 3)
@@ -144,16 +188,14 @@ public class TurnController : MonoBehaviour
                 bandits[i].isTurn = false;
             }
 
-            if (enemies.Length < 2)
+            if (enemies.Length < maxEnemies)
             {
                 enemies[0].isTurn = true;
             }
             else
             {
-                if (enemies[0] != null)
-                    enemies[0].isTurn = false;
-                if (enemies[1] != null)
-                    enemies[1].isTurn = true;
+                enemies[0].isTurn = false;
+                enemies[1].isTurn = true;
             }
         }
     }

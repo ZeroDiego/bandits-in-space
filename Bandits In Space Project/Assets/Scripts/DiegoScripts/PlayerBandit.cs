@@ -1,9 +1,10 @@
+using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public abstract class PlayerBandit : MonoBehaviour, TileMovement
 {
+    public EnemyMovement[] enemies;
     public DamagePopup damagePopup;
     public TurnController turnController;
 
@@ -19,6 +20,7 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
     protected float attackRange = 3f;
 
     private float moveSpeed = 5f;
+    [SerializeField] private float moveRange = 3f;
 
     private void Start()
     {
@@ -41,6 +43,12 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
 
         if (healthPoints <= 0)
         {
+            foreach (EnemyMovement enemy in enemies)
+            {
+                enemy.SetPlayerArray(this);
+            }
+
+            turnController.SetPlayerArray(gameObject.name);
             Destroy(gameObject);
         }
     }
@@ -51,6 +59,26 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
         {
             attackButton.gameObject.SetActive(CheckForEnemy(transform));
         }
+    }
+
+    public void SetEnemyArray(EnemyHealth enemy)
+    {
+        int index = 0;
+
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            if (enemies[i].Equals(enemy))
+            {
+                index = i;
+            }
+        }
+
+        for (int i = index; i < enemies.Length - 1; i++)
+        {
+            enemies[i] = enemies[i + 1];
+        }
+
+        Array.Resize(ref enemies, enemies.Length - 1);
     }
 
     public bool CheckForEnemy(Transform transform)
@@ -77,12 +105,12 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
 
         if (hit && hit.collider.gameObject.CompareTag("Tile"))
         {
-            if (Vector2.Distance(gameObject.transform.position, hit.collider.gameObject.transform.position) < 2.5f)
+            if (Vector2.Distance(gameObject.transform.position, hit.collider.gameObject.transform.position) < moveRange)
             {
                 Vector3 tilePosition = hit.collider.gameObject.transform.position;
                 tilePosition.y += 0.25f;
                 movePoint.position = tilePosition;
-                turnController.SetTurn();
+                turnController.SetTurn(gameObject.name);
             }
         }
     }
