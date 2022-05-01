@@ -458,9 +458,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bdab35f25285404b8d4bfe82d61743a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 2015224201}
-  - {fileID: 26893457}
   damagePopup: {fileID: 5888477830679469304, guid: 377006cfad4d21b4cb6dfad670808fd0, type: 3}
   turnController: {fileID: 249369995}
   attackButton: {fileID: 1893348094}
@@ -469,7 +466,6 @@ MonoBehaviour:
   maxHealthPoints: 50
   healthPoints: 0
   attackDamage: 10
-  moveRange: 3
 --- !u!61 &30121416
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2335,9 +2331,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f0bd3f7d0ed08c48bd867d215371675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 2015224201}
-  - {fileID: 26893457}
   damagePopup: {fileID: 5888477830679469304, guid: 377006cfad4d21b4cb6dfad670808fd0, type: 3}
   turnController: {fileID: 249369995}
   attackButton: {fileID: 738961031}
@@ -2346,7 +2339,6 @@ MonoBehaviour:
   maxHealthPoints: 50
   healthPoints: 0
   attackDamage: 10
-  moveRange: 5
 --- !u!50 &427342149
 Rigidbody2D:
   serializedVersion: 4
@@ -7814,7 +7806,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 600, y: 125}
+  m_SizeDelta: {x: 300, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1851249146
 MonoBehaviour:
@@ -7838,18 +7830,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 50
+    m_FontSize: 65
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 80
-    m_Alignment: 1
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'TurnActor + TurnID
+  m_Text: 'TurnID
 
 '
 --- !u!222 &1851249147
@@ -9017,19 +9009,11 @@ RectTransform:
   m_Father: {fileID: 421521448}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< Updated upstream
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 300, y: 125}
   m_Pivot: {x: 1, y: 1}
-=======
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -100, y: 555}
-  m_SizeDelta: {x: 600, y: 125}
-  m_Pivot: {x: 1, y: 0.5}
->>>>>>> Stashed changes
 --- !u!114 &2144657514
 MonoBehaviour:
   m_ObjectHideFlags: 0

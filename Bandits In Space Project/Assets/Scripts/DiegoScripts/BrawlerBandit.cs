@@ -39,6 +39,6 @@ public class BrawlerBandit : PlayerBandit
         }
 
         attackButton.gameObject.SetActive(false);
-        turnController.SetTurn(gameObject.name);
+        turnController.SetTurn();
     }
 }

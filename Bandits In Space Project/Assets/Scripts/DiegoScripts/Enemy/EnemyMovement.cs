@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour, TileMovement
@@ -13,15 +12,12 @@ public class EnemyMovement : MonoBehaviour, TileMovement
 
     private EnemyHealth enemyHealth;
 
-    private SpriteRenderer spriteRenderer;
-
     private float moveSpeed = 5f;
     private float targetDistance;
 
     void Start()
     {
-        enemyHealth = GetComponent<EnemyHealth>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        enemyHealth = gameObject.GetComponent<EnemyHealth>();
         targetTile.parent = null;
     }
 
@@ -35,144 +31,100 @@ public class EnemyMovement : MonoBehaviour, TileMovement
             if (Vector3.Distance(transform.position, targetTile.position) <= .05f)
             {
                 TileMovement();
-                turnController.SetTurn(gameObject.name);
+                turnController.SetTurn();
             }
         }
-    }
-
-    public void SetPlayerArray(PlayerBandit player)
-    {
-        int index = 0;
-
-        for (int i = 0; i < bandits.Length; i++)
-        {
-            if (bandits[i].Equals(player))
-            {
-                index = i;
-            }
-        }
-
-        for (int i = index; i < bandits.Length - 1; i++)
-        {
-            bandits[i] = bandits[i + 1];
-        }
-
-        Array.Resize(ref bandits, bandits.Length - 1);
     }
 
     public void TileMovement()
     {
         PlayerBandit targetPlayer = null;
 
-        if (bandits.Length >= 2)
+        for (int i = 0; i < bandits.Length - 1; i++)
         {
-            for (int i = 0; i < bandits.Length - 1; i++)
+            if (Vector3.Distance(bandits[i].transform.position, transform.position) < Vector3.Distance(bandits[i + 1].transform.position, transform.position))
             {
-                if (Vector3.Distance(bandits[i].transform.position, transform.position) < Vector3.Distance(bandits[i + 1].transform.position, transform.position))
-                {
-                    targetDistance = Vector3.Distance(bandits[i].transform.position, transform.position);
-                    targetPlayer = bandits[i];
-                }
-                else
-                {
-                    targetDistance = Vector3.Distance(bandits[i + 1].transform.position, transform.position);
-                    targetPlayer = bandits[i + 1];
-                }
+                targetDistance = Vector3.Distance(bandits[i].transform.position, transform.position);
+                targetPlayer = bandits[i];
+            }
+            else
+            {
+                targetDistance = Vector3.Distance(bandits[i + 1].transform.position, transform.position);
+                targetPlayer = bandits[i + 1];
             }
         }
-        else
-        {
-            targetDistance = Vector3.Distance(bandits[0].transform.position, transform.position);
-            targetPlayer = bandits[0];
-        }
-        
-        if (targetPlayer != null)
-        {
-            float upOrDown = UnityEngine.Random.Range(0, 2);
 
-            if (targetDistance > 3.0f)
+        float upOrDown = Random.Range(0, 2);
+
+        if (targetDistance > 3.0f)
+        {
+            if (targetPlayer.transform.position.x > transform.position.x)
             {
-                if (targetPlayer.transform.position.x > transform.position.x)
+                if (upOrDown == 0)
                 {
-                    if (upOrDown == 0)
-                    {
-                        targetTile.position += new Vector3(1.5f, -0.75f, 0);
-                    }
-                    else
-                    {
-                        targetTile.position += new Vector3(1.5f, 0.75f, 0);
-                    }
+                    targetTile.position += new Vector3(1.5f, -0.75f, 0);
                 }
                 else
                 {
-                    if (upOrDown == 0)
-                    {
-                        targetTile.position += new Vector3(-1.5f, -0.75f, 0);
-                    }
-                    else
-                    {
-                        targetTile.position += new Vector3(-1.5f, 0.75f, 0);
-                    }
+                    targetTile.position += new Vector3(1.5f, 0.75f, 0);
                 }
             }
             else
             {
-                enemyHealth.DealDamage(targetPlayer);
-            }
-
-            if (targetTile.position.y > 4.0f)
-            {
-                if (targetTile.position.x > -9.0f)
-                    targetTile.position = new Vector3(targetTile.position.x + 1.5f, 3.75f, 0);
-                else
-                    targetTile.position = new Vector3(targetTile.position.x - 1.5f, 3.75f, 0);
-            }
-            else if (targetTile.position.y < -1.5f)
-            {
-                if (targetTile.position.x > -9.0f)
-                    targetTile.position = new Vector3(targetTile.position.x + 1.5f, -1.25f, 0);
-                else
-                    targetTile.position = new Vector3(targetTile.position.x - 1.5f, -1.25f, 0);
-            }
-            else if (targetTile.position.x < -9.0f)
-            {
-                if (targetTile.position.y > -1.5f)
-                    targetTile.position = new Vector3(-7.5f, targetTile.position.y + 1.25f, 0);
-                else
-                    targetTile.position = new Vector3(-7.5f, targetTile.position.y - 1.25f, 0);
-            }
-            else if (targetTile.position.x > 9.0f)
-            {
-                if (targetTile.position.y > -1.5f)
-                    targetTile.position = new Vector3(7.5f, targetTile.position.y + 1.25f, 0);
-                else
-                    targetTile.position = new Vector3(7.5f, targetTile.position.y - 1.25f, 0);
-            }
-
-            if (targetTile.position.Equals(targetPlayer.transform.position))
-            {
-                targetTile.position = transform.position;
-            }
-            else if (otherEnemyMovement != null)
-            {
-                if (targetTile.position.Equals(otherEnemyMovement.transform.position))
+                if (upOrDown == 0)
                 {
-                    targetTile.position = transform.position;
+                    targetTile.position += new Vector3(-1.5f, -0.75f, 0);
+                }
+                else
+                {
+                    targetTile.position += new Vector3(-1.5f, 0.75f, 0);
                 }
             }
         }
         else
         {
-            targetTile.position = transform.position;
+            enemyHealth.DealDamage(targetPlayer);
         }
 
-        if (targetTile.position.x > transform.position.x)
+        if (targetTile.position.y > 4.0f)
         {
-            spriteRenderer.flipX = false;
+            if (targetTile.position.x > -9.0f)
+                targetTile.position = new Vector3(targetTile.position.x + 1.5f, 3.75f, 0);
+            else
+                targetTile.position = new Vector3(targetTile.position.x - 1.5f, 3.75f, 0);
         }
-        else
+        else if (targetTile.position.y < -1.5f)
         {
-            spriteRenderer.flipX = true;
+            if (targetTile.position.x > -9.0f)
+                targetTile.position = new Vector3(targetTile.position.x + 1.5f, -1.25f, 0);
+            else
+                targetTile.position = new Vector3(targetTile.position.x - 1.5f, -1.25f, 0);
+        }
+        else if (targetTile.position.x < -9.0f)
+        {
+            if (targetTile.position.y > -1.5f)
+                targetTile.position = new Vector3(-7.5f, targetTile.position.y + 1.25f, 0);
+            else
+                targetTile.position = new Vector3(-7.5f, targetTile.position.y - 1.25f, 0);
+        }
+        else if (targetTile.position.x > 9.0f)
+        {
+            if (targetTile.position.y > -1.5f)
+                targetTile.position = new Vector3(7.5f, targetTile.position.y + 1.25f, 0);
+            else
+                targetTile.position = new Vector3(7.5f, targetTile.position.y - 1.25f, 0);
+        }
+        
+        if (targetTile.position.Equals(targetPlayer.transform.position))
+        {
+            targetTile.position = transform.position;
+        }
+        else if (otherEnemyMovement != null)
+        {
+            if (targetTile.position.Equals(otherEnemyMovement.transform.position))
+            {
+                targetTile.position = transform.position;
+            }
         }
     }
 }
