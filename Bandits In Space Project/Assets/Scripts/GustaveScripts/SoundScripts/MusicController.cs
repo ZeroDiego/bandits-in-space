@@ -26,7 +26,8 @@ public class MusicController : MonoBehaviour
         if(currentTrack.time >= loopEndPoint)
         {
             currentTrack.time = loopStartPoint; 
-        } 
+        }
+        
     }
 
 }
