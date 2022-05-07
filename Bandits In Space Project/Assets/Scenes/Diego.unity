@@ -467,8 +467,8 @@ MonoBehaviour:
   attackButton: {fileID: 1893348094}
   movePoint: {fileID: 1557290961}
   isTurn: 0
-  maxHealthPoints: 50
-  healthPoints: 0
+  maxHealthPoints: 100
+  healthPoints: 100
   attackDamage: 10
   healthBarScript: {fileID: 1891444894}
   healthBar: {fileID: 1891444892}
@@ -2423,8 +2423,8 @@ MonoBehaviour:
   attackButton: {fileID: 738961031}
   movePoint: {fileID: 1400604860}
   isTurn: 0
-  maxHealthPoints: 50
-  healthPoints: 0
+  maxHealthPoints: 100
+  healthPoints: 100
   attackDamage: 10
   healthBarScript: {fileID: 2037527425}
   healthBar: {fileID: 2037527423}
@@ -8411,9 +8411,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -9177,9 +9177,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
