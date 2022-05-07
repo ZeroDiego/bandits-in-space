@@ -16,6 +16,8 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
     [SerializeField] protected int maxHealthPoints;
     [SerializeField] protected int healthPoints;
     [SerializeField] protected int attackDamage;
+    [SerializeField] protected HealthBarScript healthBarScript;
+    [SerializeField] protected GameObject healthBar;
 
     protected float attackRange = 3f;
 
@@ -24,7 +26,9 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
 
     private void Start()
     {
+        healthBarScript = healthBar.GetComponent<HealthBarScript> ();
         healthPoints = maxHealthPoints;
+        healthBarScript.SetHealth (maxHealthPoints);
         movePoint.parent = null;
         attackButton.gameObject.SetActive(false);
     }
@@ -119,5 +123,6 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
     {
         healthPoints -= damageToTake;
         damagePopup.Create(transform.position, damageToTake);
+        healthBarScript.SetHealth(healthPoints);
     }
 }
