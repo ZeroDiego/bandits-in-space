@@ -45,7 +45,7 @@ public class FadeController : MonoBehaviour
 
     private void Update()
     {
-        Time.timeScale = 1f;
+
         if (isActivated)
         {
             FadeOut();

@@ -8,6 +8,7 @@ public class SceneChanger : MonoBehaviour
     
     public void ChangeScene()
     {
+        Time.timeScale = 1f;
         fadeController.Fade();
         isChangingScene = true;       
     }
