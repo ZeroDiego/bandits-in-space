@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement; 
+using UnityEngine.SceneManagement;
+using UnityEngine.UI; 
 
 public class GameOver : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class GameOver : MonoBehaviour
     private void Awake()
     {
         numberOfBanditsDead = 0;
+        gameObject.GetComponent<Image>().enabled = false;
     }
     void Update()
     {      
@@ -39,7 +41,7 @@ public class GameOver : MonoBehaviour
         
         if(GameObject.FindGameObjectsWithTag("Player").Length <= 0)
         {
-            SceneManager.LoadScene("MainMenu");
+            gameObject.GetComponent<Image>().enabled = true; 
         }
     }
 }
