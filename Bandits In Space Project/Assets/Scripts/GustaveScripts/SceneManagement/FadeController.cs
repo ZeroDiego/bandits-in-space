@@ -10,7 +10,7 @@ public class FadeController : MonoBehaviour
     private float fadeTime;
 
 
-    private void Start()
+    private void Awake()
     {
         nonTransparentColor(imageToFade);
     }
