@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class FadeController : MonoBehaviour
 {
 
-    private float fadeSpeed = 2.3f;
+    private float fadeSpeed = 1.25f;
     [SerializeField] private bool isActivated = false;
     public Image imageToFade;
     private float fadeTime;
@@ -45,6 +45,7 @@ public class FadeController : MonoBehaviour
 
     private void Update()
     {
+        Time.timeScale = 1f;
         if (isActivated)
         {
             FadeOut();

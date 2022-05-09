@@ -13,7 +13,7 @@ public class GameOver : MonoBehaviour
     private void Awake()
     {
         numberOfBanditsDead = 0;
-        gameObject.GetComponent<Image>().enabled = false;
+        //gameObject.GetComponent<Image>().enabled = false;
     }
     void Update()
     {      
@@ -41,7 +41,7 @@ public class GameOver : MonoBehaviour
         
         if(GameObject.FindGameObjectsWithTag("Player").Length <= 0)
         {
-            gameObject.GetComponent<Image>().enabled = true; 
+            //gameObject.GetComponent<Image>().enabled = true; 
         }
     }
 }
