@@ -6,42 +6,24 @@ using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour
 {
-    public PlayerBandit[] playerBandits;
-    public bool[] arePlayerBanditsDead;
-    int numberOfBanditsDead;
+    [SerializeField] private GameObject stageMusicController;
+    [SerializeField] private GameObject victoryMusicController;
+    [SerializeField] private GameObject gameOverMusicController;
+    [SerializeField] private Text gameOverText; 
 
     private void Awake()
     {
-        numberOfBanditsDead = 0;
-        //gameObject.GetComponent<Image>().enabled = false;
+        gameOverText.gameObject.SetActive(false); 
     }
     void Update()
-    {      
-        /*for(int i = 0; i < playerBandits.Length; i++)
-        {
-            if (playerBandits[i].getHealthPoints() <= 0)
-            {
-                arePlayerBanditsDead[i] = true; 
-            }
-        }
-        
-        for(int i = 0; i < arePlayerBanditsDead.Length; i++)
-        {
-            if(arePlayerBanditsDead[i] == true)
-            {
-                numberOfBanditsDead++; 
-            } 
-
-            if(numberOfBanditsDead == arePlayerBanditsDead.Length)
-            {
-                SceneManager.LoadScene("MainMenu"); 
-            }
-        }
-             */      
-        
+    {                
         if(GameObject.FindGameObjectsWithTag("Player").Length <= 0)
         {
-            //gameObject.GetComponent<Image>().enabled = true; 
+            gameOverText.gameObject.SetActive(true);
+            gameOverText.gameObject.transform.position = new Vector2(0, -1 * Time.deltaTime);
+            Time.timeScale = 0.4f; 
+            stageMusicController.SetActive(false);
+            gameOverMusicController.SetActive(true); 
         }
     }
 }
