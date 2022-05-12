@@ -26,9 +26,10 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
 
     private void Start()
     {
-        healthBarScript = healthBar.GetComponent<HealthBarScript> ();
+        healthBarScript = healthBar.GetComponent<HealthBarScript>();
         healthPoints = maxHealthPoints;
-        healthBarScript.SetHealth (maxHealthPoints);
+        healthBarScript.SetMaxHealth(maxHealthPoints);
+        healthBarScript.SetNameText(gameObject.name);
         movePoint.parent = null;
         attackButton.gameObject.SetActive(false);
     }
