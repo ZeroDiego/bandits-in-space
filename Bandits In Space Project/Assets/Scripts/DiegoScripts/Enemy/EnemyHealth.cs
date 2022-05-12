@@ -15,11 +15,6 @@ public class EnemyHealth : MonoBehaviour
     {
         healthPoints -= damage;
         damagePopup.Create(transform.position, damage);
-
-        if (healthPoints <= 0)
-        {
-            Incapacitated();
-        }
     }
 
     private void Update()

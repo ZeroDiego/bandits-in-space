@@ -35,7 +35,7 @@ public class EnemyMovement : MonoBehaviour, TileMovement
             if (Vector3.Distance(transform.position, targetTile.position) <= .05f)
             {
                 TileMovement();
-                turnController.SetTurn(gameObject.name);
+                turnController.SetTurn();
             }
         }
     }

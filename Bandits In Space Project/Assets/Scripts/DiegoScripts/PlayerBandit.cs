@@ -114,7 +114,7 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
                 Vector3 tilePosition = hit.collider.gameObject.transform.position;
                 tilePosition.y += 0.25f;
                 movePoint.position = tilePosition;
-                turnController.SetTurn(gameObject.name);
+                turnController.SetTurn();
             }
         }
     }

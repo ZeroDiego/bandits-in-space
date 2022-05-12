@@ -105,11 +105,10 @@ public class TurnController : MonoBehaviour
         Array.Resize(ref enemies, enemies.Length - 1);
     }
 
-    public void SetTurn(string turnActor)
+    public void SetTurn()
     {
         turnTransistionBoolean = true;
         turnID++;
-        turnText.text = "Actor: " + turnActor + "\nTurn: " + turnID;
     }
 
     private void FirstTurn()
@@ -126,10 +125,12 @@ public class TurnController : MonoBehaviour
             if (bandits.Length < maxPlayers)
             {
                 bandits[0].isTurn = true;
+                turnText.text = "Actor: " + bandits[0].gameObject.name + "\nTurn: " + turnID;
             }
             else
             {
                 bandits[0].isTurn = true;
+                turnText.text = "Actor: " + bandits[0].gameObject.name + "\nTurn: " + turnID;
                 bandits[1].isTurn = false;
             }
 
@@ -143,20 +144,24 @@ public class TurnController : MonoBehaviour
             if (bandits.Length < maxPlayers && enemies.Length == maxEnemies)
             {
                 bandits[0].isTurn = true;
+                turnText.text = "Actor: " + bandits[0].gameObject.name + "\nTurn: " + turnID;
             }
             else if (bandits.Length == maxPlayers && enemies.Length < maxEnemies)
             {
                 bandits[0].isTurn = false;
                 bandits[1].isTurn = true;
+                turnText.text = "Actor: " + bandits[1].gameObject.name + "\nTurn: " + turnID;
             }
             else if (bandits.Length == maxPlayers && enemies.Length == maxEnemies)
             {
                 bandits[0].isTurn = false;
                 bandits[1].isTurn = true;
+                turnText.text = "Actor: " + bandits[1].gameObject.name + "\nTurn: " + turnID;
             }
             else if (bandits.Length < maxPlayers && enemies.Length < maxEnemies)
             {
                 bandits[0].isTurn = true;
+                turnText.text = "Actor: " + bandits[0].gameObject.name + "\nTurn: " + turnID;
             }
 
             for (int i = 0; i < enemies.Length; i++)
@@ -174,10 +179,12 @@ public class TurnController : MonoBehaviour
             if (enemies.Length < maxEnemies)
             {
                 enemies[0].isTurn = true;
+                turnText.text = "Actor: " + enemies[0].gameObject.name + "\nTurn: " + turnID;
             }
             else
             {
                 enemies[0].isTurn = true;
+                turnText.text = "Actor: " + enemies[0].gameObject.name + "\nTurn: " + turnID;
                 enemies[1].isTurn = false;
             }
         }
@@ -191,11 +198,13 @@ public class TurnController : MonoBehaviour
             if (enemies.Length < maxEnemies)
             {
                 enemies[0].isTurn = true;
+                turnText.text = "Actor: " + enemies[0].gameObject.name + "\nTurn: " + turnID;
             }
             else
             {
                 enemies[0].isTurn = false;
                 enemies[1].isTurn = true;
+                turnText.text = "Actor: " + enemies[1].gameObject.name + "\nTurn: " + turnID;
             }
         }
     }
