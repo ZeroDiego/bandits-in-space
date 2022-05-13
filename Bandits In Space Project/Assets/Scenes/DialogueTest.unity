@@ -428,6 +428,23 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1888528306}
     m_Modifications:
+    - target: {fileID: 1378419461322703880, guid: a456db5ef65d267498550de101a8ff7e, type: 3}
+      propertyPath: dialogue.name
+      value: IPF Grunt
+      objectReference: {fileID: 0}
+    - target: {fileID: 1378419461322703880, guid: a456db5ef65d267498550de101a8ff7e, type: 3}
+      propertyPath: dialogue.sentences.Array.data[0]
+      value: Stop right there! Don't you dare move a single step, you heinous bandit!
+      objectReference: {fileID: 0}
+    - target: {fileID: 1378419461322703880, guid: a456db5ef65d267498550de101a8ff7e, type: 3}
+      propertyPath: dialogue.sentences.Array.data[1]
+      value: 'Today is the day when you meet your maker - namely me! '
+      objectReference: {fileID: 0}
+    - target: {fileID: 1378419461322703880, guid: a456db5ef65d267498550de101a8ff7e, type: 3}
+      propertyPath: dialogue.sentences.Array.data[2]
+      value: Prepare to die! Now make sure you stand still so I can put an end to
+        this quickly...
+      objectReference: {fileID: 0}
     - target: {fileID: 1378419461322703884, guid: a456db5ef65d267498550de101a8ff7e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
