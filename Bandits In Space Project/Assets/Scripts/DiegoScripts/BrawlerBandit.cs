@@ -38,7 +38,8 @@ public class BrawlerBandit : PlayerBandit
             }
         }
 
-        attackButton.gameObject.SetActive(false);
         turnController.SetTurn();
+        attackButton.gameObject.SetActive(false);
+        attackParticleSystem.gameObject.SetActive(false);
     }
 }

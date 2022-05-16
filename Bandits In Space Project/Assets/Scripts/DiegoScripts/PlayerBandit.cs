@@ -10,6 +10,7 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
 
     public Button attackButton;
     public Transform movePoint;
+    
 
     public bool isTurn;
 
@@ -18,6 +19,7 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
     [SerializeField] protected int attackDamage;
     [SerializeField] protected HealthBarScript healthBarScript;
     [SerializeField] protected GameObject healthBar;
+    [SerializeField] protected ParticleSystem attackParticleSystem;
 
     protected float attackRange = 3f;
 
@@ -32,6 +34,7 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
         healthBarScript.SetNameText(gameObject.name);
         movePoint.parent = null;
         attackButton.gameObject.SetActive(false);
+        attackParticleSystem.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -63,6 +66,7 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
         if (isTurn)
         {
             attackButton.gameObject.SetActive(CheckForEnemy(transform));
+            attackParticleSystem.gameObject.SetActive(CheckForEnemy(transform));
         }
     }
 
