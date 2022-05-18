@@ -9,7 +9,11 @@ public class GameOver : MonoBehaviour
     [SerializeField] private GameObject stageMusicController;
     [SerializeField] private GameObject victoryMusicController;
     [SerializeField] private GameObject gameOverMusicController;
-    [SerializeField] private Text gameOverText; 
+
+    [SerializeField] private Text gameOverText;
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject resumeButton;
+    private FadeController fade = new FadeController();
 
     private void Awake()
     {
@@ -19,8 +23,10 @@ public class GameOver : MonoBehaviour
     {                
         if(GameObject.FindGameObjectsWithTag("Player").Length <= 0)
         {
-            gameOverText.gameObject.SetActive(true);
-            gameOverText.gameObject.transform.position = new Vector2(0, -1 * Time.deltaTime);
+            gameOverText.gameObject.SetActive(true);            
+            pauseMenu.SetActive(true);
+            resumeButton.SetActive(false); 
+
             Time.timeScale = 0.4f; 
             stageMusicController.SetActive(false);
             gameOverMusicController.SetActive(true); 
