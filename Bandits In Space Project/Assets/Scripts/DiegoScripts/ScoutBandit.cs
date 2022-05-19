@@ -40,6 +40,6 @@ public class ScoutBandit : PlayerBandit
 
         turnController.SetTurn();
         attackButton.gameObject.SetActive(false);
-        attackParticleSystem.gameObject.SetActive(false);
+        attackParticleSystem.Clear();
     }
 }
