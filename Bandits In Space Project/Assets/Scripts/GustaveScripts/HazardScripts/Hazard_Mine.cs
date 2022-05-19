@@ -5,6 +5,7 @@ using UnityEngine;
 public class Hazard_Mine : Hazard
 {
     public int explosionRadius;
+    [SerializeField] private GameObject mineExplosionSound; 
     private void Awake()
     {
         isVisible = true;
@@ -13,6 +14,7 @@ public class Hazard_Mine : Hazard
 
     private void Explode() //Method that makes mine explode if character steps on it
     {
+        mineExplosionSound.GetComponent<AudioSource>().Play(); 
         isVisible = true; 
         hasBeenActivated = true;    
     }
