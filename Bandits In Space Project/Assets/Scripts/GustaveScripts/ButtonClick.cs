@@ -10,16 +10,24 @@ public class ButtonClick : MonoBehaviour
     [SerializeField] private Animator buttonAnimator;
 
     public void animateButton()
-    {
-        StartCoroutine(buttonCoroutine());
+    {  
+        StartCoroutine(buttonCoroutine()); 
     }
 
     private IEnumerator buttonCoroutine()
     {
-        buttonAnimator.Play("ButtonAnimation"); 
-        yield return new WaitForSecondsRealtime(0.3f);
-        mainMenu.SetActive(false);
-        optionsMenu.SetActive(true);
+        buttonAnimator.Play("ButtonAnimation");
+        yield return new WaitForSecondsRealtime(0.4f);
+
+        if (gameObject.name == "OptionsButton")
+        {           
+            mainMenu.SetActive(false);
+            optionsMenu.SetActive(true);
+        } else if(gameObject.name == "QuitButton")
+        {
+            Debug.Log("quit");
+            Application.Quit(); 
+        }
     }
 
 }

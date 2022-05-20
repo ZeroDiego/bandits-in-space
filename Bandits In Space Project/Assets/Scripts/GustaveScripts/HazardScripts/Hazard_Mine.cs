@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class Hazard_Mine : Hazard
 {
-    public int explosionRadius;
-    [SerializeField] private GameObject mineExplosionSound; 
+    [SerializeField] private GameObject cameraShaker; 
+    [SerializeField] private GameObject mineExplosionSound;
+    [SerializeField] private ParticleSystem particles; 
     private void Awake()
     {
+        particles.gameObject.SetActive(false); 
         isVisible = true;
         hasBeenActivated = false; 
     }
 
     private void Explode() //Method that makes mine explode if character steps on it
     {
-        mineExplosionSound.GetComponent<AudioSource>().Play(); 
+        mineExplosionSound.GetComponent<AudioSource>().Play();
+        particles.gameObject.SetActive(true);
+        StartCoroutine(cameraShaker.GetComponent<CameraShake>().Shake()); 
         isVisible = true; 
         hasBeenActivated = true;    
     }
@@ -23,8 +27,7 @@ public class Hazard_Mine : Hazard
     {
         if (hasBeenActivated)
         {
-            //Destroy(gameObject);
-            Debug.Log(gameObject.name + " has been exploded");
+            Destroy(gameObject);
             gameObject.SetActive(false);
         }
 
@@ -35,18 +38,17 @@ public class Hazard_Mine : Hazard
         {
             gameObject.GetComponent<SpriteRenderer>().enabled = true; 
         }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {     
         if (collision.CompareTag("Player"))
         {
-            //Debug.Log("XD");
             collision.gameObject.GetComponent<PlayerBandit>().TakeDamage(DoDamage());
             Explode();
         } else 
         {
-            //Debug.Log("KKKKALAKA"); 
             collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(DoDamage());
             Explode();
         }      
