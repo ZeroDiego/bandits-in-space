@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Hazard_Mine : Hazard
 {
-    [SerializeField] private GameObject cameraShaker; 
+    [SerializeField] private CameraShake cameraShaker; 
     [SerializeField] private GameObject mineExplosionSound;
     [SerializeField] private ParticleSystem particles; 
     private void Awake()
@@ -18,7 +18,7 @@ public class Hazard_Mine : Hazard
     {
         mineExplosionSound.GetComponent<AudioSource>().Play();
         particles.gameObject.SetActive(true);
-        StartCoroutine(cameraShaker.GetComponent<CameraShake>().Shake()); 
+        StartCoroutine(cameraShaker.Shake(1f, .4f));
         isVisible = true; 
         hasBeenActivated = true;    
     }

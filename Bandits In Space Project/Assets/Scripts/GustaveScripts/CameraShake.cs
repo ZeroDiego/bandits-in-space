@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class CameraShake : MonoBehaviour
 {
-    
-    public IEnumerator Shake()
+    public IEnumerator Shake(float duration, float magnitude) 
     {
-        Vector2 startPosition = gameObject.transform.position;
+        Vector3 startPosition = gameObject.transform.localPosition;
         float timeElapsed = 0f;
-        float duration = 0.15f; 
 
         while(timeElapsed < duration)
         {
-            float x = Random.Range(-1f, 1f) * 0.4f;
-            float y = Random.Range(-1f, 1f) * 0.4f;
-            gameObject.transform.position = new Vector2(x, y);
-            timeElapsed += Time.deltaTime;
-            yield return 0; 
+            float x = Random.Range(-1f, 1f) * magnitude;
+            float y = Random.Range(-1f, 1f) * magnitude;
+
+            gameObject.transform.localPosition = new Vector3(x, y, startPosition.z);
+
+            timeElapsed += Time.deltaTime; 
+            yield return null; 
         }
-        gameObject.transform.position = startPosition; 
-    }
+        gameObject.transform.localPosition = startPosition; 
+    }   
 }
