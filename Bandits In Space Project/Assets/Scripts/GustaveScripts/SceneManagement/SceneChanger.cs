@@ -5,14 +5,22 @@ public class SceneChanger : MonoBehaviour
 {
     [SerializeField] private FadeController fadeController;
     private bool isChangingScene;
-    
+ 
     public void ChangeScene()
     {
         Time.timeScale = 1f;
         fadeController.Fade();
-        isChangingScene = true;       
+        isChangingScene = true; 
     }
- 
+
+    public void ChangeScene(string nameOfScene)
+    {
+        Time.timeScale = 1f;
+        fadeController.Fade();
+        isChangingScene = true;
+        SceneManager.LoadScene(nameOfScene); 
+    }
+
     private void Update()
     {
         if (fadeController.imageToFade.color.a >= 1 && isChangingScene)
