@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,16 @@ public class SceneChanger : MonoBehaviour
     private void Start()
     {
         isChangingScene = false; 
+        if(gameObject.name == "TimeLimiter")
+        {
+            StartCoroutine(timeBasedChangeScene());
+        }
+    }
+
+    private IEnumerator timeBasedChangeScene()
+    {
+        yield return new WaitForSecondsRealtime(20);
+        SceneManager.LoadSceneAsync("MainMenu"); 
     }
     public void ChangeScene()
     {
