@@ -27,6 +27,9 @@ public class ButtonClick : MonoBehaviour
         {
             Debug.Log("quit");
             Application.Quit(); 
+        } else if(gameObject.name == "Overworld")
+        {
+            gameObject.GetComponent<SceneChanger>().ChangeScene(); 
         }
     }
 

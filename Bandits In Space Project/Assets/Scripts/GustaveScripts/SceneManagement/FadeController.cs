@@ -5,13 +5,14 @@ public class FadeController : MonoBehaviour
 {
 
     private float fadeSpeed = 1.25f;
-    [SerializeField] private bool isActivated = false;
+    [SerializeField] private bool isActivated;
     public Image imageToFade;
     private float fadeTime;
 
 
     private void Start()
     {
+        isActivated = false; 
         nonTransparentColor(imageToFade);
     }
 
@@ -22,7 +23,7 @@ public class FadeController : MonoBehaviour
 
     public void nonTransparentColor(Image nonTransparent)
     {
-        nonTransparent.color = new Color(0, 0, 0, 1);
+        nonTransparent.color = new Color(0, 0, 0, 0);
     }
 
     public void FadeOut()
