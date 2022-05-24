@@ -11,8 +11,8 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator NewGameCoroutine()
     {
-        yield return new WaitForSecondsRealtime(0.3f);
-        SceneManager.LoadScene(1); // should be changed to specific scenes instead of index
+        yield return new WaitForSecondsRealtime(0.5f);
+        SceneManager.LoadScene("Introduction"); // should be changed to specific scenes instead of index
     }
 
     public void QuitGame()

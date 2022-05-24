@@ -5,7 +5,11 @@ public class SceneChanger : MonoBehaviour
 {
     [SerializeField] private FadeController fadeController;
     private bool isChangingScene;
- 
+
+    private void Start()
+    {
+        isChangingScene = false; 
+    }
     public void ChangeScene()
     {
         Time.timeScale = 1f;
@@ -26,7 +30,9 @@ public class SceneChanger : MonoBehaviour
         if (fadeController.imageToFade.color.a >= 1 && isChangingScene)
         {
             SceneManager.LoadSceneAsync(gameObject.name);
-        } else if (GameObject.FindGameObjectsWithTag("Enemy").Length <= 0 && SceneManager.GetActiveScene().name != "Overworld")
+        } else if (GameObject.FindGameObjectsWithTag("Enemy").Length <= 0 
+            && SceneManager.GetActiveScene().name != "Overworld" 
+            && SceneManager.GetActiveScene().name != "Introduction")
         {
             ChangeSceneLevelComplete();
         }
