@@ -30,6 +30,10 @@ public class ButtonClick : MonoBehaviour
         } else if(gameObject.name == "Overworld")
         {
             gameObject.GetComponent<SceneChanger>().ChangeScene(); 
+        } else if(gameObject.name == "BackButton")
+        {
+            mainMenu.SetActive(true);
+            optionsMenu.SetActive(false); 
         }
     }
 

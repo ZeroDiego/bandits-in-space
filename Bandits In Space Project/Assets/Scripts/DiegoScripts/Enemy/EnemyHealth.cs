@@ -7,6 +7,7 @@ public class EnemyHealth : MonoBehaviour
     public PlayerBandit[] players;
     public TurnController turnController;
     public DamagePopup damagePopup;
+    [SerializeField] private AudioSource hitSound; 
 
     [SerializeField] private int healthPoints = 20;
     [SerializeField] private int attackDamage = 10;
@@ -27,6 +28,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void DealDamage(PlayerBandit bandit)
     {
+        hitSound.Play();
         bandit.TakeDamage(attackDamage);
     }
 

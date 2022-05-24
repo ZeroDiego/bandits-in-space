@@ -38,6 +38,7 @@ public class BrawlerBandit : PlayerBandit
             }
         }
 
+        hitSound.Play(); 
         turnController.SetTurn();
         attackButton.gameObject.SetActive(false);
         attackParticleSystem.Clear();

@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Overworld.unity
     guid: 5fb161c91801d1b4982942213f93a84c
   - enabled: 1
-    path: Assets/Scenes/Diego.unity
+    path: Assets/Scenes/Level 1.unity
     guid: 86900db8d27c0da45aec815649f4d514
   - enabled: 1
     path: Assets/Scenes/Level 2.unity

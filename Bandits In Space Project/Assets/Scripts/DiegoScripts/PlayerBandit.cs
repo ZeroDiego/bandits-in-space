@@ -8,6 +8,7 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
     public DamagePopup damagePopup;
     public TurnController turnController;
     public TileController tileController;
+    [SerializeField] protected AudioSource hitSound; 
 
     public Button attackButton;
     public Transform movePoint;
