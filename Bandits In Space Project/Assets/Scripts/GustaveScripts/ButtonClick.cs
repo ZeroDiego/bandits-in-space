@@ -36,7 +36,7 @@ public class ButtonClick : MonoBehaviour
             optionsMenu.SetActive(false); 
         } else if(gameObject.name == "NewGameButton")
         {
-            //gameObject.GetComponent<SceneChanger>().FadeToLevel(1); 
+            gameObject.GetComponent<SceneChanger>().FadeToLevel(1); 
         }
     }
 

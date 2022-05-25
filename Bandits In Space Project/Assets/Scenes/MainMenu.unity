@@ -1564,11 +1564,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd50ee8376a9dfb4d80e3328cf1912ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &1080331750 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5515928020251023825, guid: 62ce4a51aab3a4c49993491a9b1c18c4, type: 3}
+--- !u!114 &1160878496 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5515928020251023824, guid: 62ce4a51aab3a4c49993491a9b1c18c4, type: 3}
   m_PrefabInstance: {fileID: 5515928019179082807}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fc22ea7edfd7cf4fa23af7f382ab918, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1277207358
 GameObject:
   m_ObjectHideFlags: 0
@@ -2279,7 +2285,6 @@ GameObject:
   - component: {fileID: 1595304711}
   - component: {fileID: 1595304710}
   - component: {fileID: 1595304713}
-  - component: {fileID: 1595304714}
   m_Layer: 5
   m_Name: NewGameButton
   m_TagString: Untagged
@@ -2375,7 +2380,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1595304714}
+      - m_Target: {fileID: 1160878496}
         m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
         m_MethodName: FadeToLevel
         m_Mode: 3
@@ -2440,20 +2445,6 @@ MonoBehaviour:
   mainMenu: {fileID: 0}
   optionsMenu: {fileID: 0}
   buttonAnimator: {fileID: 298779247}
---- !u!114 &1595304714
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1595304708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fc22ea7edfd7cf4fa23af7f382ab918, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelToLoad: 1
-  animator: {fileID: 1080331750}
 --- !u!1 &1666106980
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-    [SerializeField] private int levelToLoad; 
+    private int levelToLoad; 
     public Animator animator; 
 
     private void Start()
@@ -30,6 +30,25 @@ public class SceneChanger : MonoBehaviour
     public void OnFadeComplete()
     {
         SceneManager.LoadScene(levelToLoad); 
+    }
+
+    public void changeSceneFromOverworld()
+    {
+        if(gameObject.name == "Level 1")
+        {
+            FadeToLevel(3); 
+        } else if(gameObject.name == "Level 2"){
+            FadeToLevel(4); 
+        }
+    }
+
+    private void Update()
+    {
+        Debug.Log(Victory.numberOfLevelsComplete);
+        if(Victory.numberOfLevelsComplete == 3)
+        {
+            FadeToLevel(5); 
+        }
     }
 
 }
