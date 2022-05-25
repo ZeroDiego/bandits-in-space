@@ -1,16 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : Entity
 {
-    public PlayerBandit[] players;
-    public TurnController turnController;
     public DamagePopup damagePopup;
     [SerializeField] private AudioSource hitSound; 
 
+    private PlayerBandit[] bandits;
+    private TurnController turnController;
+
     [SerializeField] private int healthPoints = 20;
     [SerializeField] private int attackDamage = 10;
+
+    private void Awake()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        Array.Resize(ref bandits, players.Length);
+
+        for (int i = 0; i < players.Length; i++)
+        {
+            bandits[i] = players[i].GetComponent<PlayerBandit>();
+        }
+
+        turnController = GameObject.Find("TurnController").GetComponent<TurnController>();
+    }
 
     public void TakeDamage(int damage)
     {
@@ -34,12 +47,12 @@ public class EnemyHealth : MonoBehaviour
 
     private void Incapacitated()
     {
-        foreach (PlayerBandit player in players)
+        foreach (PlayerBandit player in bandits)
         {
             player.SetEnemyArray(this);
         }
 
-        turnController.SetEnemyArray(gameObject.name);
+        turnController.SetArray(this);
         Destroy(gameObject);
     }
 }

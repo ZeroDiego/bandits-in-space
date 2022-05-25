@@ -6,46 +6,86 @@ using UnityEngine.UI;
 
 public class TurnController : MonoBehaviour
 {
-    public PlayerBandit[] bandits;
-    public EnemyMovement[] enemies;
+    [SerializeField] private Entity[] entities;
 
     public Text turnText;
-
-    [SerializeField] private string[] turnOrder;
 
     [SerializeField] private float turnTransistionTimer;
     [SerializeField] private float turnTransistionDuration;
 
     [SerializeField] private int turnID;
-    private int maxPlayers;
-    private int maxEnemies;
+    private int maxEntities;
 
     [SerializeField] private bool nextTurn;
     [SerializeField] private bool turnTransistionBoolean;
 
-    void Start()
+    private void Awake()
     {
-        maxPlayers = bandits.Length;
-        maxEnemies = enemies.Length;
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        Entity[] playerEntities = new Entity[players.Length];
 
-        turnID = 0;
-        turnTransistionTimer = turnTransistionDuration;
-
-        turnOrder = new string[bandits.Length + enemies.Length];
-
-        for (int i = 0; i < bandits.Length; i++)
+        for (int i = 0; i < players.Length; i++)
         {
-            turnOrder[i] = bandits[i].gameObject.name;
+             playerEntities[i] = players[i].GetComponent<Entity>();
         }
 
-        for (int i = bandits.Length; i < turnOrder.Length; i++)
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        Entity[] enemyEntities = new Entity[enemies.Length];
+
+        for (int i = 0; i < enemies.Length; i++)
         {
-            turnOrder[i] = enemies[i - bandits.Length].gameObject.name;
+            enemyEntities[i] = enemies[i].GetComponent<Entity>();
         }
 
-        FirstTurn();
+        Array.Resize(ref entities, playerEntities.Length + enemyEntities.Length);
+        Array.Copy(playerEntities, entities, playerEntities.Length);
+        Array.Copy(enemyEntities, 0, entities, playerEntities.Length, enemyEntities.Length);
     }
 
+    void Start()
+    {
+        maxEntities = entities.Length;
+        turnID = 0;
+        turnTransistionTimer = turnTransistionDuration;
+        TurnOrder();
+        FirstTurn(entities[0]);
+    }
+
+    private void FirstTurn(Entity firstActor)
+    {
+        firstActor.isTurn = true;
+        string turnActor = firstActor.gameObject.name;
+        turnText.text = "Actor: " + turnActor + "\nTurn: " + turnID;
+    }
+
+    private void SwapEntity(int firstIndex, int secondIndex)
+    {
+        Entity entity = entities[firstIndex];
+        Entity otherEntity = entities[secondIndex];
+        entities[secondIndex] = entity;
+        entities[firstIndex] = otherEntity;
+    }
+
+    private int FindLeastAgileEntity(int leastAgileIndex)
+    {
+        Entity entity = entities[leastAgileIndex];
+
+        for (int i = leastAgileIndex; i < entities.Length; i++)
+        {
+            entity = entity.CompareEntities(entities[i]);
+        }
+
+        return Array.IndexOf(entities, entity);
+    }
+
+    private void TurnOrder()
+    {
+        for (int i = 0; i < entities.Length - 1; i++)
+        {
+            int currentLeastAgileIndex = FindLeastAgileEntity(i);
+            SwapEntity(i, currentLeastAgileIndex);
+        }
+    }
 
     void Update()
     {
@@ -65,44 +105,25 @@ public class TurnController : MonoBehaviour
         }
     }
 
-    public void SetPlayerArray(string turnActor)
+    public void SetArray(Entity removedEntity)
     {
         int index = 0;
 
-        for (int i = 0; i < turnOrder.Length; i++)
+        for (int i = 0; i < entities.Length; i++)
         {
-            if (turnOrder[i].Equals(turnActor))
+            if (entities[i].Equals(removedEntity))
             {
                 index = i;
             }
         }
 
-        for (int i = index; i < bandits.Length - 1; i++)
+        for (int i = index; i < entities.Length - 1; i++)
         {
-            bandits[i] = bandits[i + 1];
+            entities[i] = entities[i + 1];
         }
 
-        Array.Resize(ref bandits, bandits.Length - 1);
-    }
-
-    public void SetEnemyArray(string turnActor)
-    {
-        int index = 0;
-
-        for (int i = 0; i < turnOrder.Length; i++)
-        {
-            if (turnOrder[i].Equals(turnActor))
-            {
-                index = i;
-            }
-        }
-
-        for (int i = index - bandits.Length; i < enemies.Length - 1; i++)
-        {
-            enemies[i] = enemies[i + 1];
-        }
-
-        Array.Resize(ref enemies, enemies.Length - 1);
+        Array.Resize(ref entities, entities.Length - 1);
+        maxEntities--;
     }
 
     public void SetTurn()
@@ -111,114 +132,17 @@ public class TurnController : MonoBehaviour
         turnID++;
     }
 
-    private void FirstTurn()
-    {
-        bandits[0].isTurn = true;
-        string turnActor = bandits[0].gameObject.name;
-        turnText.text = "Actor: " + turnActor + "\nTurn: " + turnID;
-    }
-
     private void NextTurn()
     {
-        if (turnID % turnOrder.Length == 0)
-        {
-            if (bandits.Length < maxPlayers)
-            {
-                bandits[0].isTurn = true;
-                turnText.text = "Actor: " + bandits[0].gameObject.name + "\nTurn: " + turnID;
-            }
-            else
-            {
-                bandits[0].isTurn = true;
-                turnText.text = "Actor: " + bandits[0].gameObject.name + "\nTurn: " + turnID;
-                bandits[1].isTurn = false;
-            }
-
-            for (int i = 0; i < enemies.Length; i++)
-            {
-                enemies[i].isTurn = false;
-            }
-        }
-        else if (turnID % turnOrder.Length == 1)
-        {
-            if (bandits.Length < maxPlayers && enemies.Length == maxEnemies)
-            {
-                bandits[0].isTurn = true;
-                turnText.text = "Actor: " + bandits[0].gameObject.name + "\nTurn: " + turnID;
-            }
-            else if (bandits.Length == maxPlayers && enemies.Length < maxEnemies)
-            {
-                bandits[0].isTurn = false;
-                bandits[1].isTurn = true;
-                turnText.text = "Actor: " + bandits[1].gameObject.name + "\nTurn: " + turnID;
-            }
-            else if (bandits.Length == maxPlayers && enemies.Length == maxEnemies)
-            {
-                bandits[0].isTurn = false;
-                bandits[1].isTurn = true;
-                turnText.text = "Actor: " + bandits[1].gameObject.name + "\nTurn: " + turnID;
-            }
-            else if (bandits.Length < maxPlayers && enemies.Length < maxEnemies)
-            {
-                bandits[0].isTurn = true;
-                turnText.text = "Actor: " + bandits[0].gameObject.name + "\nTurn: " + turnID;
-            }
-
-            for (int i = 0; i < enemies.Length; i++)
-            {
-                enemies[i].isTurn = false;
-            }
-        }
-        else if (turnID % turnOrder.Length == 2)
-        {
-            for (int i = 0; i < bandits.Length; i++)
-            {
-                bandits[i].isTurn = false;
-            }
-
-            if (enemies.Length < maxEnemies)
-            {
-                enemies[0].isTurn = true;
-                turnText.text = "Actor: " + enemies[0].gameObject.name + "\nTurn: " + turnID;
-            }
-            else
-            {
-                enemies[0].isTurn = true;
-                turnText.text = "Actor: " + enemies[0].gameObject.name + "\nTurn: " + turnID;
-                enemies[1].isTurn = false;
-            }
-        }
-        else if (turnID % turnOrder.Length == 3)
-        {
-            for (int i = 0; i < bandits.Length; i++)
-            {
-                bandits[i].isTurn = false;
-            }
-
-            if (enemies.Length < maxEnemies)
-            {
-                enemies[0].isTurn = true;
-                turnText.text = "Actor: " + enemies[0].gameObject.name + "\nTurn: " + turnID;
-            }
-            else
-            {
-                enemies[0].isTurn = false;
-                enemies[1].isTurn = true;
-                turnText.text = "Actor: " + enemies[1].gameObject.name + "\nTurn: " + turnID;
-            }
-        }
+        entities[turnID % maxEntities].isTurn = true;
+        turnText.text = "Actor: " + entities[turnID % maxEntities] + "\nTurn: " + turnID;
     }
 
     private void TurnTransistion()
     {
-        foreach (PlayerBandit player in bandits)
+        foreach (Entity entity in entities)
         {
-            player.isTurn = false;
-        }
-
-        foreach (EnemyMovement enemy in enemies)
-        {
-            enemy.isTurn = false;
+            entity.isTurn = false;
         }
 
         turnTransistionTimer -= Time.deltaTime;

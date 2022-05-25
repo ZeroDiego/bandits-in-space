@@ -1,30 +1,39 @@
 using System;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour, TileMovement
+public class EnemyMovement : Entity, TileMovement
 {
-    public PlayerBandit[] bandits;
-    public EnemyMovement otherEnemyMovement;
-    public TurnController turnController;
-
     public Transform targetTile;
 
-    public bool isTurn;
-
     private EnemyHealth enemyHealth;
-
+    private PlayerBandit[] bandits;
     private SpriteRenderer spriteRenderer;
+    private TurnController turnController;
+    private TileController tileController;
 
     private float moveSpeed = 5f;
     private float targetDistance;
 
-    void Start()
+    private void Awake()
     {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        Array.Resize(ref bandits, players.Length);
+
+        for (int i = 0; i < players.Length; i++)
+        {
+            bandits[i] = players[i].GetComponent<PlayerBandit>();
+        }
+
+        turnController = GameObject.Find("TurnController").GetComponent<TurnController>();
+        tileController = GameObject.Find("TileController").GetComponent<TileController>();
         enemyHealth = GetComponent<EnemyHealth>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        targetTile.parent = null;
     }
 
+    private void Start()
+    {
+        targetTile.parent = null;
+    }
 
     void Update()
     {
@@ -114,43 +123,30 @@ public class EnemyMovement : MonoBehaviour, TileMovement
                         targetTile.position += new Vector3(-1.5f, 0.75f, 0);
                     }
                 }
+
+                if (targetTile.position.y > 3.5f)
+                {
+                    targetTile.position = transform.position;
+                }
+
+                if (targetTile.position.y < -1.5f)
+                {
+                    targetTile.position = transform.position;
+                }
+
+                if (targetTile.position.x < -9.0f)
+                {
+                    targetTile.position = transform.position;
+                }
+
+                if (targetTile.position.x > 9.0f)
+                {
+                    targetTile.position = transform.position;
+                }
             }
             else
             {
                 enemyHealth.DealDamage(targetPlayer);
-            }
-
-            if (targetTile.position.y > 3.5f)
-            {
-                targetTile.position = transform.position;
-            }
-
-            if (targetTile.position.y < -1.5f)
-            {
-                targetTile.position = transform.position;
-            }
-
-            if (targetTile.position.x < -9.0f)
-            {
-                targetTile.position = transform.position;
-            }
-
-            if (targetTile.position.x > 9.0f)
-            {
-                targetTile.position = transform.position;
-            }
-
-            if (targetTile.position.Equals(targetPlayer.transform.position))
-            {
-                targetTile.position = transform.position;
-            }
-
-            if (otherEnemyMovement != null)
-            {
-                if (targetTile.position.Equals(otherEnemyMovement.transform.position))
-                {
-                    targetTile.position = transform.position;
-                }
             }
         }
         else

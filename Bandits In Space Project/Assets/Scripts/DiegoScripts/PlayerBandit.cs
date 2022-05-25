@@ -2,18 +2,14 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class PlayerBandit : MonoBehaviour, TileMovement
-{
-    public EnemyMovement[] enemies;
+public abstract class PlayerBandit : Entity, TileMovement
+{   
     public DamagePopup damagePopup;
-    public TurnController turnController;
-    public TileController tileController;
+    
     [SerializeField] protected AudioSource hitSound; 
 
     public Button attackButton;
     public Transform movePoint;
-
-    public bool isTurn;
 
     [SerializeField] protected int maxHealthPoints;
     [SerializeField] protected int healthPoints;
@@ -21,11 +17,29 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
     [SerializeField] protected HealthBarScript healthBarScript;
     [SerializeField] protected GameObject healthBar;
     [SerializeField] protected ParticleSystem attackParticleSystem;
+    protected TurnController turnController;
+
+    private EnemyMovement[] enemyMovements;
+    private TileController tileController;
 
     protected float attackRange = 3f;
 
     private float moveSpeed = 5f;
     [SerializeField] private float moveRange = 3f;
+
+    private void Awake()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        Array.Resize(ref enemyMovements, enemies.Length);
+
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            enemyMovements[i] = enemies[i].GetComponent<EnemyMovement>();
+        }
+
+        turnController = GameObject.Find("TurnController").GetComponent<TurnController>();
+        tileController = GameObject.Find("TileController").GetComponent<TileController>();
+    }
 
     private void Start()
     {
@@ -66,7 +80,7 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
         }
         else
         {
-            foreach (EnemyMovement enemy in enemies)
+            foreach (EnemyMovement enemy in enemyMovements)
             {
                 if (enemy.isTurn)
                 {
@@ -81,12 +95,12 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
 
         if (healthPoints <= 0)
         {
-            foreach (EnemyMovement enemy in enemies)
+            foreach (EnemyMovement enemy in enemyMovements)
             {
                 enemy.SetPlayerArray(this);
             }
 
-            turnController.SetPlayerArray(gameObject.name);
+            turnController.SetArray(this);
             Destroy(gameObject);
         }
     }
@@ -118,20 +132,20 @@ public abstract class PlayerBandit : MonoBehaviour, TileMovement
     {
         int index = 0;
 
-        for (int i = 0; i < enemies.Length; i++)
+        for (int i = 0; i < enemyMovements.Length; i++)
         {
-            if (enemies[i].Equals(enemy))
+            if (enemyMovements[i].Equals(enemy))
             {
                 index = i;
             }
         }
 
-        for (int i = index; i < enemies.Length - 1; i++)
+        for (int i = index; i < enemyMovements.Length - 1; i++)
         {
-            enemies[i] = enemies[i + 1];
+            enemyMovements[i] = enemyMovements[i + 1];
         }
 
-        Array.Resize(ref enemies, enemies.Length - 1);
+        Array.Resize(ref enemyMovements, enemyMovements.Length - 1);
     }
 
     public bool CheckForEnemyLeft(Transform transform)
