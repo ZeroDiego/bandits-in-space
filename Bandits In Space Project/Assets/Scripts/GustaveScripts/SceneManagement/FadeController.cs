@@ -10,9 +10,9 @@ public class FadeController : MonoBehaviour
     private float fadeTime;
 
 
-    private void Start()
+    private void Awake()
     {
-        isActivated = false; 
+        FadeIn();
         nonTransparentColor(imageToFade);
     }
 
@@ -23,7 +23,7 @@ public class FadeController : MonoBehaviour
 
     public void nonTransparentColor(Image nonTransparent)
     {
-        nonTransparent.color = new Color(0, 0, 0, 0);
+       // nonTransparent.color = new Color(0, 0, 0, 0);
     }
 
     public void FadeOut()
@@ -42,6 +42,7 @@ public class FadeController : MonoBehaviour
             fadeTime = imageToFade.color.a - (fadeSpeed * Time.deltaTime);
             imageToFade.color = new Color(0, 0, 0, fadeTime);
         }
+        
     }
 
     private void Update()
@@ -50,10 +51,6 @@ public class FadeController : MonoBehaviour
         if (isActivated)
         {
             FadeOut();
-        }
-        else if (!isActivated)
-        {
-            FadeIn();
         }
     }
 

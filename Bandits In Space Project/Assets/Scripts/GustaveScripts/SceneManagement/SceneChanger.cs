@@ -4,12 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-    [SerializeField] private FadeController fadeController;
-    private bool isChangingScene;
+    [SerializeField] private int levelToLoad; 
+    public Animator animator; 
 
     private void Start()
     {
-        isChangingScene = false; 
         if(gameObject.name == "TimeLimiter")
         {
             StartCoroutine(timeBasedChangeScene());
@@ -21,37 +20,16 @@ public class SceneChanger : MonoBehaviour
         yield return new WaitForSecondsRealtime(20);
         SceneManager.LoadSceneAsync("MainMenu"); 
     }
-    public void ChangeScene()
+
+    public void FadeToLevel(int levelIndex)
     {
-        Time.timeScale = 1f;
-        fadeController.Fade();
-        isChangingScene = true; 
+        levelToLoad = levelIndex; 
+        animator.SetTrigger("FadeOut");
     }
 
-    public void ChangeScene(string nameOfScene)
+    public void OnFadeComplete()
     {
-        Time.timeScale = 1f;
-        fadeController.Fade();
-        isChangingScene = true;
-        SceneManager.LoadScene(nameOfScene); 
+        SceneManager.LoadScene(levelToLoad); 
     }
 
-    private void Update()
-    {
-        if (fadeController.imageToFade.color.a >= 1 && isChangingScene)
-        {
-            SceneManager.LoadSceneAsync(gameObject.name);
-        } else if (GameObject.FindGameObjectsWithTag("Enemy").Length <= 0 
-            && SceneManager.GetActiveScene().name != "Overworld" 
-            && SceneManager.GetActiveScene().name != "Introduction")
-        {
-            ChangeSceneLevelComplete();
-        }
-
-    }
-
-    private void ChangeSceneLevelComplete()
-    {
-        SceneManager.LoadSceneAsync("Overworld");
-    }
 }

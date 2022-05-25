@@ -477,7 +477,7 @@ MonoBehaviour:
   m_text: "Credits: \n\n\n\nErmias Gonday: Game Designer, Writer, Programmer\n\n\n\nGustave
     Millner Sjoeblom: Music Composer, Programmer, Game Designer, Writer\n\n\n\nGustav
     Halvars: Lead Programmer, Game Designer \n\n\n\nDiego Puentes Varas: Lead Programmer
-    \n\n\n\nEllen Ygfors: Lead Artist \n\n\n\nFont: Thaleah Fat By Tiny Worlds\n\n\nSpace
+    \n\n\n\nEllen Ygfors: Lead Artist \n\n\n\nFont: Thaleah Fat By Tiny Worlds\n\n\n\t\tSpace
     Bandits"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0a3b77983d8912b4191b0cee8a35139d, type: 2}

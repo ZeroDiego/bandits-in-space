@@ -29,11 +29,14 @@ public class ButtonClick : MonoBehaviour
             Application.Quit(); 
         } else if(gameObject.name == "Overworld")
         {
-            gameObject.GetComponent<SceneChanger>().ChangeScene(); 
+            gameObject.GetComponent<SceneChanger>().FadeToLevel(2); 
         } else if(gameObject.name == "BackButton")
         {
             mainMenu.SetActive(true);
             optionsMenu.SetActive(false); 
+        } else if(gameObject.name == "NewGameButton")
+        {
+            //gameObject.GetComponent<SceneChanger>().FadeToLevel(1); 
         }
     }
 
