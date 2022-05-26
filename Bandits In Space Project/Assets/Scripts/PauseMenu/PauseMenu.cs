@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,9 +8,14 @@ public class PauseMenu : MonoBehaviour
     
     public void Pause()
     {
+        StartCoroutine(PauseCoroutine());
+    }
+
+    public IEnumerator PauseCoroutine()
+    {
+        yield return new WaitForSecondsRealtime(0.3f);
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
-
     }
 
     public void Resume()

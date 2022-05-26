@@ -10,6 +10,10 @@ public class Victory : MonoBehaviour
 
     private void increaseLevelsComplete()
     {
+        if(numberOfLevelsComplete == 0)
+        {
+            sceneChanger.FadeToLevel(4); 
+        }
         numberOfLevelsComplete++;
         gameObject.SetActive(false); 
     }
@@ -20,8 +24,8 @@ public class Victory : MonoBehaviour
 
         if(GameObject.FindGameObjectsWithTag("Enemy").Length <= 0)
         {
-            sceneChanger.FadeToLevel(2);
             increaseLevelsComplete();             
         }
+
     }
 }

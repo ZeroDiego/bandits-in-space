@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Level 1.unity
     guid: 86900db8d27c0da45aec815649f4d514
   - enabled: 1
+    path: Assets/Scenes/Second Bandit Joins.unity
+    guid: 3cc192cb51401b24283f12917090d7f0
+  - enabled: 1
     path: Assets/Scenes/Level 2.unity
     guid: 827c8e856d91be346b6a7f745245e05c
   - enabled: 1
