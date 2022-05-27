@@ -29,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3889608640039088147}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.17081, y: 2.269094, z: 234.5194}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children:
   - {fileID: 3889608641129600872}
   m_Father: {fileID: 0}
@@ -149,6 +149,7 @@ MonoBehaviour:
   isTurn: 0
   agility: 0
   targetTile: {fileID: 3889608641129600872}
+  bandits: []
 --- !u!114 &3889608640039088159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,6 +165,7 @@ MonoBehaviour:
   isTurn: 0
   agility: 0
   damagePopup: {fileID: 5888477830679469304, guid: 377006cfad4d21b4cb6dfad670808fd0, type: 3}
+  hitSound: {fileID: 0}
   healthPoints: 40
   attackDamage: 20
 --- !u!1 &3889608641129600873

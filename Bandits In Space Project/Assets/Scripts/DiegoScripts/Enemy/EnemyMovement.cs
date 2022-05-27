@@ -105,22 +105,22 @@ public class EnemyMovement : Entity, TileMovement
                 {
                     if (upOrDown == 0)
                     {
-                        targetTile.position += new Vector3(1.5f, -0.75f, 0);
+                        targetTile.position += new Vector3(1f, -1.1f, 0);
                     }
                     else
                     {
-                        targetTile.position += new Vector3(1.5f, 0.75f, 0);
+                        targetTile.position += new Vector3(1f, 1.1f, 0);
                     }
                 }
                 else
                 {
                     if (upOrDown == 0)
                     {
-                        targetTile.position += new Vector3(-1.5f, -0.75f, 0);
+                        targetTile.position += new Vector3(-1f, -1.1f, 0);
                     }
                     else
                     {
-                        targetTile.position += new Vector3(-1.5f, 0.75f, 0);
+                        targetTile.position += new Vector3(-1f, 1.1f, 0);
                     }
                 }
 

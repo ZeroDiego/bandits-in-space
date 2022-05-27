@@ -13,6 +13,12 @@ public class TileController : MonoBehaviour
     private Color scoutColor = Color.gray;
     private Color brawlerColor = Color.red;
 
+    private void Start()
+    {
+        tileTriggers = GetComponentsInChildren<TileTrigger>();
+        movementParticleSystems = GetComponentsInChildren<ParticleSystem>();
+    }
+
     private void Update()
     {
         for (int i = 0; i < tileTriggers.Length; i++)
