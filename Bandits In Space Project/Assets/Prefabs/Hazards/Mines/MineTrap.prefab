@@ -4943,9 +4943,9 @@ GameObject:
   - component: {fileID: 6325122420799540614}
   - component: {fileID: 6325122420799540634}
   - component: {fileID: 6325122420799540613}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: MineTrap
-  m_TagString: Tile
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

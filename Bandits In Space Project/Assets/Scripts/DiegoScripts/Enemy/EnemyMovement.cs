@@ -6,7 +6,7 @@ public class EnemyMovement : Entity, TileMovement
     public Transform targetTile;
 
     private EnemyHealth enemyHealth;
-    private PlayerBandit[] bandits;
+    [SerializeField] private PlayerBandit[] bandits;
     private SpriteRenderer spriteRenderer;
     private TurnController turnController;
     private TileController tileController;

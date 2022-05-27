@@ -19,7 +19,7 @@ public abstract class PlayerBandit : Entity, TileMovement
     [SerializeField] protected ParticleSystem attackParticleSystem;
     protected TurnController turnController;
 
-    private EnemyMovement[] enemyMovements;
+    [SerializeField] private EnemyMovement[] enemyMovements;
     private TileController tileController;
 
     protected float attackRange = 3f;

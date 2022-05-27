@@ -44,7 +44,7 @@ public class SceneChanger : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(Victory.numberOfLevelsComplete);
+        //Debug.Log(Victory.numberOfLevelsComplete);
         if(Victory.numberOfLevelsComplete == 3)
         {
             FadeToLevel(5); 

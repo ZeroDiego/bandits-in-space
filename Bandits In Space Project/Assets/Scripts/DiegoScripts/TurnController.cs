@@ -107,15 +107,21 @@ public class TurnController : MonoBehaviour
 
     public void SetArray(Entity removedEntity)
     {
+        Debug.Log(removedEntity.gameObject.name);
         int index = 0;
 
         for (int i = 0; i < entities.Length; i++)
         {
             if (entities[i].Equals(removedEntity))
             {
-                index = i;
+                if (entities[i].gameObject.name.Equals(removedEntity.gameObject.name))
+                {
+                    index = i;
+                }
             }
         }
+
+        Debug.Log(index);
 
         for (int i = index; i < entities.Length - 1; i++)
         {
