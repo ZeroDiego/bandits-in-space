@@ -168,6 +168,7 @@ MonoBehaviour:
   healthBar: {fileID: 1891444892}
   attackParticleSystem: {fileID: 129547315}
   enemyMovements: []
+  attackRange: 3
   moveRange: 2.5
 --- !u!61 &30121416
 BoxCollider2D:
@@ -5931,6 +5932,7 @@ MonoBehaviour:
   healthBar: {fileID: 2037527423}
   attackParticleSystem: {fileID: 473183396}
   enemyMovements: []
+  attackRange: 3
   moveRange: 8
 --- !u!50 &427342149
 Rigidbody2D:
@@ -11610,8 +11612,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 738961029}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 808.89734}
-  m_LocalScale: {x: 0.011111111, y: 0.011111111, z: 0.011111111}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children:
   - {fileID: 2118470346}
   m_Father: {fileID: 1950557679}
@@ -11619,7 +11621,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 2.8641798, y: -8.672137}
+  m_AnchoredPosition: {x: 2.8, y: -8.6}
   m_SizeDelta: {x: 500, y: 200}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &738961031
@@ -11733,7 +11735,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3889608640039088144, guid: adb9162e911f127409118adf61fd70df, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.75
+      value: 1.05
       objectReference: {fileID: 0}
     - target: {fileID: 3889608640039088144, guid: adb9162e911f127409118adf61fd70df, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12265,7 +12267,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1071408903}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 702.2238, y: 240.49248, z: -72800.766}
+  m_LocalPosition: {x: 702, y: 240, z: 0}
   m_LocalScale: {x: 90, y: 90, z: 90}
   m_Children:
   - {fileID: 1716257833}
@@ -12518,7 +12520,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3889608640039088144, guid: adb9162e911f127409118adf61fd70df, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 3.25
       objectReference: {fileID: 0}
     - target: {fileID: 3889608640039088144, guid: adb9162e911f127409118adf61fd70df, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12962,7 +12964,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelChanger
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1042581652016743441, guid: 62ce4a51aab3a4c49993491a9b1c18c4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 62ce4a51aab3a4c49993491a9b1c18c4, type: 3}
 --- !u!1 &1557290960
 GameObject:

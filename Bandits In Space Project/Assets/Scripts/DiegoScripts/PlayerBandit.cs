@@ -22,7 +22,7 @@ public abstract class PlayerBandit : Entity, TileMovement
     [SerializeField] private EnemyMovement[] enemyMovements;
     private TileController tileController;
 
-    protected float attackRange = 3f;
+    [SerializeField] protected float attackRange = 3f;
 
     private float moveSpeed = 5f;
     [SerializeField] private float moveRange = 3f;
@@ -109,14 +109,8 @@ public abstract class PlayerBandit : Entity, TileMovement
     {
         if (isTurn)
         {
-            if(CheckForEnemyLeft(transform) || CheckForEnemyRight(transform))
-            {
-                Debug.Log("Hej"); 
-                attackButton.gameObject.SetActive(true);
-                attackParticleSystem.gameObject.SetActive(true);
-            }
-            //attackButton.gameObject.SetActive(CheckForEnemyLeft(transform) || CheckForEnemyRight(transform));
-            //attackParticleSystem.gameObject.SetActive(CheckForEnemyLeft(transform) || CheckForEnemyRight(transform));
+            attackButton.gameObject.SetActive(CheckForEnemyLeft(transform) || CheckForEnemyRight(transform));
+            attackParticleSystem.gameObject.SetActive(CheckForEnemyLeft(transform) || CheckForEnemyRight(transform));
 
             ParticleSystem.ShapeModule shapeSettings = attackParticleSystem.GetComponent<ParticleSystem>().shape;
             ParticleSystemRenderer renderSettings = attackParticleSystem.GetComponent<ParticleSystemRenderer>();
@@ -156,7 +150,7 @@ public abstract class PlayerBandit : Entity, TileMovement
 
     public bool CheckForEnemyLeft(Transform transform)
     {
-        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, new Vector2(-3, 0), attackRange, 1 << 6);
+        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector2.left, attackRange, 1 << 6);
 
         if (hitLeft.collider != null)
         {
@@ -171,7 +165,7 @@ public abstract class PlayerBandit : Entity, TileMovement
 
     public bool CheckForEnemyRight(Transform transform)
     {
-        RaycastHit2D hitRight = Physics2D.Raycast(transform.position, new Vector2(3, 0), attackRange, 1 << 6);
+        RaycastHit2D hitRight = Physics2D.Raycast(transform.position, -Vector2.left, attackRange, 1 << 6);
 
         if (hitRight.collider != null)
         {
