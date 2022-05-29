@@ -18,14 +18,10 @@ public class Victory : MonoBehaviour
     }
 
     private void increaseLevelsComplete()
-    {
-       
-        if (numberOfLevelsComplete == 0)
-        { 
-            hud.SetActive(false);
-            victoryScreen.SetActive(true); 
-            //sceneChanger.FadeToLevel(4); 
-        }
+    {       
+        hud.SetActive(false);
+        victoryScreen.SetActive(true); 
+          
         numberOfLevelsComplete++;
         gameObject.SetActive(false); 
     }
