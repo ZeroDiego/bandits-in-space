@@ -6,9 +6,8 @@ using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour
 {
-    [SerializeField] private GameObject stageMusicController;
-    [SerializeField] private GameObject victoryMusicController;
-    [SerializeField] private GameObject gameOverMusicController;
+    [SerializeField] private AudioSource stageMusicController;
+    [SerializeField] private AudioSource gameOverMusicController;
 
     [SerializeField] private Text gameOverText;
     [SerializeField] private GameObject pauseMenu;
@@ -16,7 +15,8 @@ public class GameOver : MonoBehaviour
 
     private void Awake()
     {
-        gameOverText.gameObject.SetActive(false); 
+        gameOverText.gameObject.SetActive(false);
+        gameOverMusicController.enabled = false;
     }
 
     void Update()
@@ -27,9 +27,8 @@ public class GameOver : MonoBehaviour
             pauseMenu.SetActive(true);
             resumeButton.SetActive(false); 
 
-            Time.timeScale = 0.4f; 
-            stageMusicController.SetActive(false);
-            gameOverMusicController.SetActive(true); 
+            stageMusicController.enabled = false;
+            gameOverMusicController.enabled = true; 
         }
     }
 }
