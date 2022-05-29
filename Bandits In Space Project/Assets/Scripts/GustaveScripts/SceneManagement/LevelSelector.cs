@@ -28,6 +28,11 @@ public class LevelSelector : MonoBehaviour
             sceneChangerObject.name = "Level 2";
             buttonText.GetComponent<TextMeshProUGUI>().SetText("Level 2");
             sceneChanger.name = "Level 2";
+        } else if (Victory.numberOfLevelsComplete == 2)
+        {
+            sceneChangerObject.name = "Level 3";
+            buttonText.GetComponent<TextMeshProUGUI>().SetText("Level 3");
+            sceneChanger.name = "Level 3";
         }
     }
 
