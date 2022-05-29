@@ -12677,7 +12677,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4631355753500273778, guid: b7ced3c6675730d469469e17492e66b4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -166.35
+      value: 77
       objectReference: {fileID: 0}
     - target: {fileID: 4631355753500273779, guid: b7ced3c6675730d469469e17492e66b4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -12685,7 +12685,7 @@ PrefabInstance:
       objectReference: {fileID: 1328541977}
     - target: {fileID: 4631355753815659418, guid: b7ced3c6675730d469469e17492e66b4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4631355754086462676, guid: b7ced3c6675730d469469e17492e66b4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -12708,6 +12708,10 @@ PrefabInstance:
       value: 1.9263854
       objectReference: {fileID: 0}
     - target: {fileID: 4631355754086462679, guid: b7ced3c6675730d469469e17492e66b4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 457
+      objectReference: {fileID: 0}
+    - target: {fileID: 4631355754086462679, guid: b7ced3c6675730d469469e17492e66b4, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 76.368
       objectReference: {fileID: 0}
@@ -12724,8 +12728,12 @@ PrefabInstance:
       value: 1.9263854
       objectReference: {fileID: 0}
     - target: {fileID: 4631355754560968233, guid: b7ced3c6675730d469469e17492e66b4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -436
+      objectReference: {fileID: 0}
+    - target: {fileID: 4631355754560968233, guid: b7ced3c6675730d469469e17492e66b4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 338.35
+      value: 78
       objectReference: {fileID: 0}
     - target: {fileID: 4631355754560968238, guid: b7ced3c6675730d469469e17492e66b4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
