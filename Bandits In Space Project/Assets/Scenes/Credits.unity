@@ -415,7 +415,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fc22ea7edfd7cf4fa23af7f382ab918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeController: {fileID: 0}
+  levelToLoad: 0
+  animator: {fileID: 0}
 --- !u!1 &1180866610
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,8 +475,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Credits: \n\n\n\nErmias Gonday: Game Designer, Writer, Programmer\n\n\n\nGustave
-    Millner Sjoeblom: Music Composer, Programmer, Game Designer, Writer\n\n\n\nGustav
+  m_text: "Credits: \n\n\n\nErmias Gonday: Game Designer, Planner, Programmer\n\n\n\nGustave
+    Millner Sjoblom: Music Composer, Programmer, Game Designer, Writer\n\n\n\nGustav
     Halvars: Lead Programmer, Game Designer \n\n\n\nDiego Puentes Varas: Lead Programmer
     \n\n\n\nEllen Ygfors: Lead Artist \n\n\n\nFont: Thaleah Fat By Tiny Worlds\n\n\n\t\tSpace
     Bandits"
