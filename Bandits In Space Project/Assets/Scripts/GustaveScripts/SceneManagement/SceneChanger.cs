@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
-    private int levelToLoad; 
+    public int levelToLoad; 
     public Animator animator; 
 
     private void Start()

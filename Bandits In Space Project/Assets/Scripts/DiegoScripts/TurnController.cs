@@ -55,7 +55,7 @@ public class TurnController : MonoBehaviour
     {
         firstActor.isTurn = true;
         string turnActor = firstActor.gameObject.name;
-        turnText.text = "Actor: " + turnActor + "\nTurn: " + turnID;
+        turnText.text = "Actor: " + turnActor; 
     }
 
     private void SwapEntity(int firstIndex, int secondIndex)
