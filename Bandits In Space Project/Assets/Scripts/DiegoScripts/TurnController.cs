@@ -112,7 +112,7 @@ public class TurnController : MonoBehaviour
 
         for (int i = 0; i < entities.Length; i++)
         {
-            if (entities[i].Equals(removedEntity))
+            if (entities[i].gameObject.name.Equals(removedEntity.gameObject.name))
             {
                 if (entities[i].gameObject.name.Equals(removedEntity.gameObject.name))
                 {

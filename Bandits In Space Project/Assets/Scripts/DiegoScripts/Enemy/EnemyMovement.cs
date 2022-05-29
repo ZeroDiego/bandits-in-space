@@ -3,19 +3,32 @@ using UnityEngine;
 
 public class EnemyMovement : Entity, TileMovement
 {
-    public Transform targetTile;
-
     private EnemyHealth enemyHealth;
     [SerializeField] private PlayerBandit[] bandits;
     private SpriteRenderer spriteRenderer;
     private TurnController turnController;
-    private TileController tileController;
+    private Transform targetTile;
+
+    public float minX;
+    public float maxX;
+    public float minY;
+    public float maxY;
 
     private float moveSpeed = 5f;
     private float targetDistance;
 
     private void Awake()
     {
+        Transform[] transforms = GetComponentsInChildren<Transform>();
+
+        foreach (Transform transform in transforms)
+        {
+            if (transform.parent != null)
+            {
+                targetTile = transform;
+            }
+        }
+
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         Array.Resize(ref bandits, players.Length);
 
@@ -25,14 +38,13 @@ public class EnemyMovement : Entity, TileMovement
         }
 
         turnController = GameObject.Find("TurnController").GetComponent<TurnController>();
-        tileController = GameObject.Find("TileController").GetComponent<TileController>();
         enemyHealth = GetComponent<EnemyHealth>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
     {
-        targetTile.parent = null;
+        targetTile.SetParent(null);
     }
 
     void Update()
@@ -124,22 +136,22 @@ public class EnemyMovement : Entity, TileMovement
                     }
                 }
 
-                if (targetTile.position.y > 3.5f)
+                if (targetTile.position.y > maxY)
                 {
                     targetTile.position = transform.position;
                 }
 
-                if (targetTile.position.y < -1.5f)
+                if (targetTile.position.y < minY)
                 {
                     targetTile.position = transform.position;
                 }
 
-                if (targetTile.position.x < -9.0f)
+                if (targetTile.position.x < minX)
                 {
                     targetTile.position = transform.position;
                 }
 
-                if (targetTile.position.x > 9.0f)
+                if (targetTile.position.x > maxX)
                 {
                     targetTile.position = transform.position;
                 }

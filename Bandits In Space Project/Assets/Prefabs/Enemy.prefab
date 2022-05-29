@@ -148,8 +148,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTurn: 0
   agility: 0
-  targetTile: {fileID: 3889608641129600872}
   bandits: []
+  minX: -8
+  maxX: 7.8
+  minY: -2.5
+  maxY: 5.2
 --- !u!114 &3889608640039088159
 MonoBehaviour:
   m_ObjectHideFlags: 0
