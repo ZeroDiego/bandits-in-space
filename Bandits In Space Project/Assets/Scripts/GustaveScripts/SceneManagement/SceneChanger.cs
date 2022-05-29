@@ -39,6 +39,9 @@ public class SceneChanger : MonoBehaviour
             FadeToLevel(3); 
         } else if(gameObject.name == "Level 2"){
             FadeToLevel(5); 
+        } else if(gameObject.name == "Level 3")
+        {
+            FadeToLevel(7); 
         }
     }
 
