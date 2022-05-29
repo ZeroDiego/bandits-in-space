@@ -24,6 +24,7 @@ public class NumberOfPlayers : MonoBehaviour
         else if(Victory.numberOfLevelsComplete == 1)
         {
             player2.SetActive(true);
+            player3.SetActive(false); 
         }
         else
         {
