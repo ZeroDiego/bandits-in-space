@@ -1603,7 +1603,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoutBandit: {fileID: 0}
-  brawlerBandit: {fileID: 0}
+  brawlerBandit: {fileID: 2054113118}
   tileTriggers: []
   movementParticleSystems: []
 --- !u!114 &1715892526
@@ -1982,6 +1982,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8332535564323480956, guid: 41d762a08bebdc040a4ea249635f61ae, type: 3}
   m_PrefabInstance: {fileID: 2024429331}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2054113118 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8332535564323480944, guid: 41d762a08bebdc040a4ea249635f61ae, type: 3}
+  m_PrefabInstance: {fileID: 2024429331}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bdab35f25285404b8d4bfe82d61743a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2099803873
 GameObject:
   m_ObjectHideFlags: 0
