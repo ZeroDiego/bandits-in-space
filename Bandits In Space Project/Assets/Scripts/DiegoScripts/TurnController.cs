@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -107,7 +105,6 @@ public class TurnController : MonoBehaviour
 
     public void SetArray(Entity removedEntity)
     {
-        Debug.Log(removedEntity.gameObject.name);
         int index = 0;
 
         for (int i = 0; i < entities.Length; i++)
@@ -120,8 +117,6 @@ public class TurnController : MonoBehaviour
                 }
             }
         }
-
-        Debug.Log(index);
 
         for (int i = index; i < entities.Length - 1; i++)
         {

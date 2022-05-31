@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class EnemyMovement : Entity, TileMovement
+public class EnemyMovement : Entity, ITileMovement
 {
     private EnemyHealth enemyHealth;
     [SerializeField] private PlayerBandit[] bandits;
@@ -67,7 +67,7 @@ public class EnemyMovement : Entity, TileMovement
 
         for (int i = 0; i < bandits.Length; i++)
         {
-            if (bandits[i].Equals(player))
+            if (bandits[i].gameObject.name.Equals(player.gameObject.name))
             {
                 index = i;
             }

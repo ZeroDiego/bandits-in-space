@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class PlayerBandit : Entity, TileMovement
+public abstract class PlayerBandit : Entity, ITileMovement
 {   
     public DamagePopup damagePopup;
     
@@ -17,6 +17,7 @@ public abstract class PlayerBandit : Entity, TileMovement
     [SerializeField] protected HealthBarScript healthBarScript;
     [SerializeField] protected GameObject healthBar;
     [SerializeField] protected ParticleSystem attackParticleSystem;
+    protected AudioSource walkSoundSource;
     protected TurnController turnController;
 
     [SerializeField] private EnemyMovement[] enemyMovements;
@@ -29,6 +30,8 @@ public abstract class PlayerBandit : Entity, TileMovement
 
     private void Awake()
     {
+        walkSoundSource = GetComponent<AudioSource>();
+
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         Array.Resize(ref enemyMovements, enemies.Length);
 
@@ -134,7 +137,7 @@ public abstract class PlayerBandit : Entity, TileMovement
 
         for (int i = 0; i < enemyMovements.Length; i++)
         {
-            if (enemyMovements[i].Equals(enemy))
+            if (enemyMovements[i].gameObject.name.Equals(enemy.gameObject.name))
             {
                 index = i;
             }
@@ -191,6 +194,7 @@ public abstract class PlayerBandit : Entity, TileMovement
                 Vector3 tilePosition = hit.collider.gameObject.transform.position;
                 tilePosition.y += 0.25f;
                 movePoint.position = tilePosition;
+                walkSoundSource.Play();
                 turnController.SetTurn();
             }
         }
